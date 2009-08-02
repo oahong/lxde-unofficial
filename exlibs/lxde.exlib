@@ -1,0 +1,16 @@
+
+
+
+myexparam suffix=gz
+
+HOMEPAGE="http://www.lxde.org"
+DOWNLOADS="mirror://sourceforge/lxde/${PNV}.tar.$(exparam suffix)"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        sys-devel/gettext
+"
+
+BUGS_TO="oahong@gmail.com"
+

@@ -1,0 +1,30 @@
+
+
+require lxde [ suffix=gz ]
+
+SUMMARY="Terminal emulator for LXDE"
+DESCRIPTION="
+LXterminal is a VTE-based terminal emulator with support for multiple tabs.
+It is completely desktop-independent and does not have any unnecessary
+dependencies. In order to reduce memory usage and increase the performance
+all instances of the terminal are sharing a single process.
+"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES+="
+    build:
+        x11-proto/xproto
+    build+run:
+        dev-libs/glib:2[>=2.6.0]
+        dev-libs/vte
+        x11-libs/gtk+:2
+        x11-libs/libX11
+"
+
+# Never regenerate roff man pages from Docbook
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-man )
+

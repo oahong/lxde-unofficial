@@ -1,0 +1,30 @@
+
+
+require lxde
+
+DESCRIPTION="
+Libmenu-cache is a library creating and utilizing caches to speed up
+the manipulation for freedesktop.org defined application menus.
+It can be used as a replacement of libgnome-menu of gnome-menus.
+
+Advantages:
+1. Shorten time for loading menu entries.
+2. Ease of use. (API is very similar to that of libgnome-menu)
+3. Lightweight runtime library. (Parsing of the menu definition files.
+   are done by menu-cache-gen when the menus are really changed.)
+4. Less unnecessary and complicated file monitoring.
+5. Heavily reduced disk I/O.
+"
+
+LICENCES=""
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS="debug"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/glib:2[>=2.16.0]
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
+
