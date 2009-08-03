@@ -9,8 +9,3 @@ SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""
 
-DEPENDENCIES="
-    build+run:
-        dev-libs/glib:2[>=2.6.0]
-"
-

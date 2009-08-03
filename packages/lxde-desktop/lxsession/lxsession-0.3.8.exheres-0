@@ -1,0 +1,18 @@
+
+
+require lxde
+
+SUMMARY="Default X11 session manager of LXDE"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS="hal [[ description = [ Build with HAL support for shutdown/reboot/suspend ] ]]"
+
+DEPENDENCIES="
+    build+run:
+        hal? ( sys-apps/dbus )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( hal )
+

@@ -1,0 +1,8 @@
+--- lxpanel-0.5.1/src/plugins/netstatus/Makefile.am~	2009-08-03 14:28:12.006655968 +0800
++++ lxpanel-0.5.1/src/plugins/netstatus/Makefile.am	2009-08-03 21:07:34.285729449 +0800
+@@ -34,4 +34,4 @@
+ 	$(LXPANEL_MODULE)
+ 
+ install-exec-hook:
+-	rm -f "$(moduledir)\*.la" *.a
++	rm -f "$(DESTDIR)$(moduledir)\*.la" *.a

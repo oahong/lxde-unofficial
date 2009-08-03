@@ -4,14 +4,8 @@ require lxde
 
 SUMMARY="Data files for LXDE desktop menus"
 
-#FIXME
-LICENCES="GPL-2"
+LICENCES="GPL-2" #FIXME
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""
-
-DEPENDENCIES="
-    build:
-        dev-util/intltool[>=0.40.0]
-"
 

@@ -19,12 +19,9 @@ DEPENDENCIES+="
     build:
         x11-proto/xproto
     build+run:
-        dev-libs/glib:2[>=2.6.0]
         dev-libs/vte
-        x11-libs/gtk+:2
         x11-libs/libX11
 "
 
-# Never regenerate roff man pages from Docbook
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-man )
 

@@ -4,12 +4,24 @@
 myexparam suffix=gz
 
 HOMEPAGE="http://www.lxde.org"
-DOWNLOADS="mirror://sourceforge/lxde/${PNV}.tar.$(exparam suffix)"
+DOWNLOADS="
+    mirror://sourceforge/lxde/${PNV}.tar.$(exparam suffix)
+    mirror://gentoo/${PNV}.tar.$(exparam suffix)
+"
 
 DEPENDENCIES="
     build:
         dev-util/pkg-config
+    build+run:
+        dev-libs/glib:2[>=2.16.0]
+"
+
+[[ "${CATEGORY}" = "lxde-desktop" ]] && DEPENDENCIES+="
+    build:
+        dev-util/intltool
         sys-devel/gettext
+    build+run:
+        x11-libs/gtk+:2[>=2.12.0]
 "
 
 BUGS_TO="oahong@gmail.com"
