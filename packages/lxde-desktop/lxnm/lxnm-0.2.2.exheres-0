@@ -1,4 +1,5 @@
-
+# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Purpose License v2
 
 require lxde [ nodeps=true ]
 
