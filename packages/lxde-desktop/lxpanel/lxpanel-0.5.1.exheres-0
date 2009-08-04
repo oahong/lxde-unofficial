@@ -27,7 +27,7 @@ DEPENDENCIES="
 DEFAULT_SRC_PREPARE_PATCHES=(
     "${FILES}"/${PNV}-Makefile.am.patch
     #FIXME: terminal icon in launchbar won't work
-    #"${FILES}"/${PNV}-default.patch
+    "${FILES}"/${PNV}-default.patch
 )
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-alsa --enable-plugins-loading
