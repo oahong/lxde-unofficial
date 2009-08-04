@@ -14,7 +14,10 @@ DEPENDENCIES="
         dev-util/pkg-config
     build+run:
         dev-libs/glib:2[>=2.6.0]
+    run:
+        net-misc/dhcpcd
+        sys-apps/net-tools
+        net-wireless/wpa_supplicant
+        net-wireless/wireless_tools
 "
-
-BUGS_TO="oahong@gmail.com"
 
