@@ -16,7 +16,7 @@ if [[ ! $(exparam nodeps) ]] ; then
         build+run:
             dev-libs/glib:2[>=2.16.0]
 "
-    [[ "${CATEGORY}" = "lxde-desktop" ]] && DEPENDENCIES+="
+    [[ ${CATEGORY} == lxde-desktop ]] && DEPENDENCIES+="
         build:
             dev-util/intltool
             sys-devel/gettext
