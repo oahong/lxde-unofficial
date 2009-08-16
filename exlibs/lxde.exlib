@@ -3,7 +3,7 @@
 # Based in part upon 'xfce.exlib', which is:
 # Copyright (c) 2008, 2009 Ingmar Vanhassel <ingmar@exherbo.org>
 
-myexparam suffix=gz
+myexparam suffix=gz # stolen from gnu.exlib
 myexparam -b nodeps=false
 
 HOMEPAGE="http://www.lxde.org"
@@ -25,5 +25,18 @@ if [[ ! $(exparam nodeps) ]] ; then
 "
 fi
 
+if ever at_least scm ; then
+    SCM_REPOSITORY="https://lxde.svn.sourceforge.net/svnroot/lxde"
+    SCM_SUBPATH="${PN}"
+    require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
+
+    export_exlib_phases src_prepare
+    DOWNLOADS=""
+fi
+
 BUGS_TO="oahong@gmail.com"
+
+lxde_src_prepare () {
+    ./autogen.sh
+}
 
