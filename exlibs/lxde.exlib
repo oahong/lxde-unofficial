@@ -37,6 +37,6 @@ fi
 BUGS_TO="oahong@gmail.com"
 
 lxde_src_prepare () {
-    ./autogen.sh
+    ./autogen.sh || die "./autogen.sh returned exit status: $?"
 }
 
