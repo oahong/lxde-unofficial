@@ -35,6 +35,7 @@ if ever at_least scm ; then
 fi
 
 BUGS_TO="oahong@gmail.com"
+REMOTE_IDS="sourceforge:lxde"
 
 lxde_src_prepare () {
     ./autogen.sh
