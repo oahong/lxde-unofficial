@@ -38,6 +38,6 @@ BUGS_TO="oahong@gmail.com"
 REMOTE_IDS="sourceforge:lxde"
 
 lxde_src_prepare () {
-    ./autogen.sh
+    ./autogen.sh || die "./autogen.sh returned exit status: $?"
 }
 
