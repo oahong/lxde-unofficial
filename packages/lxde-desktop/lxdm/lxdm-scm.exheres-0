@@ -1,0 +1,24 @@
+# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxde
+
+SUMMARY="GUI login manager for LXDE"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/libXmu
+        x11-libs/libX11
+        sys-libs/pam
+"
+
+src_prepare() {
+    lxde_src_prepare
+    echo "data/lxdm.glade src/lxdm-ui.c" >> po/POTFILES.in
+}
+
