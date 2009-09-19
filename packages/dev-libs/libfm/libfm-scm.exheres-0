@@ -1,7 +1,7 @@
 # Copyright 2009 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_REPOSITORY="git://libfm.git.sourceforge.net/gitroot/libfm/libfm"
+SCM_REPOSITORY="git://pcmanfm.git.sourceforge.net/gitroot/pcmanfm/libfm"
 require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="A glib/gio-based lib used to develop file managers"
