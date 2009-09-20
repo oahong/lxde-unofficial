@@ -10,7 +10,6 @@ SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""
 
-# FIXME:
 DEPENDENCIES="
     build:
         x11-proto/xproto
@@ -22,11 +21,11 @@ DEPENDENCIES="
         lxde-desktop/lxmenu-data
     post,suggested:
         net-www/firefox
+        lxde-desktop/lxterminal
         x11-apps/pcmanfm
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/${PNV}-Makefile.am.patch
     #FIXME: default terminal icon in launchbar won't work for me
     "${FILES}"/${PNV}-default.patch
 )
