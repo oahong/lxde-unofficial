@@ -1,0 +1,53 @@
+# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="git://pcmanfm.git.sourceforge.net/gitroot/pcmanfm/libfm"
+require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="A glib/gio-based lib used to develop file managers"
+HOMEPAGE="http://sourceforge.net/projects/libfm"
+DOWNLOADS=""
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-libs/glib:2
+        lxde-base/menu-cache
+        x11-libs/gtk+:2[>=2.16.0]
+"
+
+BUGS_TO="oahong@gmail.com"
+REMOTE_IDS="sourceforge:libfm"
+
+src_prepare() {
+    # empty po subdir.
+#    sed -e '/po\/Makefile/d' -i configure.ac || die "sed failed"
+#    autotools_src_prepare
+    ./autogen.sh || die
+    echo "data/ui/ask-rename.ui
+data/ui/file-prop.ui
+data/ui/progress.ui
+src/base/fm-file-info.c
+src/base/fm-utils.c
+src/demo/main-win-ui.c
+src/gtk/exo/exo-icon-view.c
+src/gtk/exo/exo-tree-view.c
+src/gtk/fm-dnd-dest.c
+src/gtk/fm-file-menu.c
+src/gtk/fm-file-properties.c
+src/gtk/fm-folder-view.c
+src/gtk/fm-gtk-utils.c
+src/gtk/fm-places-view.c
+src/gtk/fm-progress-dlg.c
+src/job/fm-dir-list-job.c" >> po/POTFILES.in
+
+}
+
