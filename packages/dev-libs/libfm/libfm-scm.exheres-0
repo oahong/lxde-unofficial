@@ -24,30 +24,11 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.16.0]
 "
 
+RESTRICT="test" # libfm has a empty po dir.
 BUGS_TO="oahong@gmail.com"
 REMOTE_IDS="sourceforge:libfm"
 
 src_prepare() {
-    # empty po subdir.
-#    sed -e '/po\/Makefile/d' -i configure.ac || die "sed failed"
-#    autotools_src_prepare
     ./autogen.sh || die
-    echo "data/ui/ask-rename.ui
-data/ui/file-prop.ui
-data/ui/progress.ui
-src/base/fm-file-info.c
-src/base/fm-utils.c
-src/demo/main-win-ui.c
-src/gtk/exo/exo-icon-view.c
-src/gtk/exo/exo-tree-view.c
-src/gtk/fm-dnd-dest.c
-src/gtk/fm-file-menu.c
-src/gtk/fm-file-properties.c
-src/gtk/fm-folder-view.c
-src/gtk/fm-gtk-utils.c
-src/gtk/fm-places-view.c
-src/gtk/fm-progress-dlg.c
-src/job/fm-dir-list-job.c" >> po/POTFILES.in
-
 }
 
