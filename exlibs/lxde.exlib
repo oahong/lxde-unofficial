@@ -28,6 +28,7 @@ fi
 if ever at_least scm ; then
     SCM_REPOSITORY="https://lxde.svn.sourceforge.net/svnroot/lxde"
     SCM_SUBPATH="${PN}"
+    SCM_CHECKOUT_TO="lxde/${PN}"
     require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
 
     export_exlib_phases src_prepare
