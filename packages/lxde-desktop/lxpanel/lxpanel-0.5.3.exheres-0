@@ -19,7 +19,7 @@ DEPENDENCIES="
         x11-libs/libX11
     run:
         lxde-desktop/lxmenu-data
-    post,suggested:
+    suggestion:
         net-www/firefox
         lxde-desktop/lxterminal
         x11-apps/pcmanfm
