@@ -9,7 +9,7 @@ myexparam -b nodeps=false
 HOMEPAGE="http://www.lxde.org"
 DOWNLOADS="mirror://sourceforge/lxde/${PNV}.tar.$(exparam suffix)"
 
-if [[ ! $(exparam nodeps) ]] ; then
+if [[ ! $(exparam -b nodeps) ]] ; then
     DEPENDENCIES="
         build:
             dev-util/pkg-config
@@ -29,7 +29,7 @@ if ever at_least scm ; then
     SCM_REPOSITORY="https://lxde.svn.sourceforge.net/svnroot/lxde"
     SCM_SUBPATH="${PN}"
     SCM_CHECKOUT_TO="lxde/${PN}"
-    require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
+    require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 1.11 ] ]
 
     export_exlib_phases src_prepare
     DOWNLOADS=""
@@ -39,6 +39,6 @@ BUGS_TO="oahong@gmail.com"
 REMOTE_IDS="sourceforge:lxde"
 
 lxde_src_prepare () {
-    ./autogen.sh || die "./autogen.sh returned exit status: $?"
+    edo ./autogen.sh
 }
 
