@@ -12,13 +12,11 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        x11-libs/libXmu
-        x11-libs/libX11
         sys-libs/pam
+        x11-libs/libX11
+        x11-libs/libXmu
+        sys-auth/ConsoleKit
 "
 
-src_prepare() {
-    lxde_src_prepare
-    echo "data/lxdm.glade src/lxdm-ui.c" >> po/POTFILES.in
-}
+RESTRICT="test"
 
