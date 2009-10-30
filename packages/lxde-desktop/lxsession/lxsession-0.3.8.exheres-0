@@ -7,7 +7,7 @@ SUMMARY="Default X11 session manager of LXDE"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="hal [[ description = [ Build with HAL support for shutdown/reboot/suspend ] ]]"
 
 DEPENDENCIES="

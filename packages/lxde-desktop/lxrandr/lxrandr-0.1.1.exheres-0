@@ -7,7 +7,7 @@ SUMMARY="Monitor config tool for LXDE"
 
 LICENCES="GPL-3"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-configure.in.patch )
