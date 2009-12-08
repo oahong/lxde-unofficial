@@ -1,0 +1,12 @@
+# Copyright 2009 Gaute Hope <eg@gaute.vetsj.com>
+# Distributed under the terms of the GNU General Public Licence v2
+
+require lxde
+SUMMARY="LXAppearance is a gtk+ theme switcher for the LXDE project"
+
+LICENCES="GPL-3"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-cursor-theme )
+
