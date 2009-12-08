@@ -6,7 +6,6 @@ require lxde autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] 
 SUMMARY="An open source clone of Asus launcher for EeePC"
 
 LICENCES="GPL-3"
-SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 

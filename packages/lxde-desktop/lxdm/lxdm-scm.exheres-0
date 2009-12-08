@@ -6,7 +6,6 @@ require lxde
 SUMMARY="GUI login manager for LXDE"
 
 LICENCES="GPL-3"
-SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""
 

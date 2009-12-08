@@ -6,7 +6,6 @@ require lxde
 SUMMARY="Keyboard and mouse configuration tool for LXDE"
 
 LICENCES="GPL-3"
-SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 

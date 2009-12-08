@@ -6,7 +6,6 @@ require lxde
 SUMMARY="A lightweight X11 desktop panel"
 
 LICENCES="GPL-2 as-is"
-SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 

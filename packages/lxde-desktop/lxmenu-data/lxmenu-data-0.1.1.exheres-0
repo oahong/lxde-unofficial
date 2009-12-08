@@ -6,7 +6,6 @@ require lxde
 SUMMARY="Data files for LXDE desktop menus"
 
 LICENCES="GPL-2" #FIXME
-SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 

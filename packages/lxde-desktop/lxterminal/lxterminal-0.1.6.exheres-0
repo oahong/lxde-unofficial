@@ -12,7 +12,6 @@ all instances of the terminal are sharing a single process.
 "
 
 LICENCES="GPL-2"
-SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 

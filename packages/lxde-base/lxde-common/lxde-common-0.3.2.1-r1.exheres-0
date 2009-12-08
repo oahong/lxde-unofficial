@@ -6,7 +6,6 @@ require lxde [ suffix=bz2  component=base ] autotools [ supported_autoconf=[ 2.5
 SUMMARY="A set of default configurations for LXDE"
 
 LICENCES="GPL-2"
-SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
