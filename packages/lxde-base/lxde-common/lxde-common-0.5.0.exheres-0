@@ -1,0 +1,23 @@
+# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require lxde [ component=base ]
+
+SUMMARY="A set of default configurations for LXDE"
+
+LICENCES="GPL-2"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    run:
+        x11-themes/tango-icon-theme
+"
+
+src_prepare() {
+    # Use tango icon theme
+    edo sed -e 's/nuoveXT2/tango/'  \
+        -i desktop.conf
+    #autotools_src_prepare
+}
+
