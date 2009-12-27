@@ -7,30 +7,11 @@ require freedesktop-mime freedesktop-desktop
 require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="PCMan file manager, a fast graphical file manager"
-DESCRIPTION="
-Features:
-* Extremly fast and lightweight
-* Can be started in one second on normal machine
-* Tabbed browsing (Similiar to Firefox)
-* Built-in volume management (mount/umount/eject through HAL)
-* Built-in file searching utility (GUI frontend for the UNIX find + grep command)
-* Drag & Drop support
-* Files can be dragged among tabs
-* Load large directories in reasonable time
-* File association support (Default application)
-* Thumbnail for image files
-* Bookmarks support
-* Handles non-UTF-8 encoded filenames correctly
-* Provides icon view, compact view, and detailed list view
-* Standard compliant (Follows FreeDesktop.org)
-* Clean and user-friendly interface (GTK+ 2)
-"
-
 HOMEPAGE="http://pcmanfm.sourceforge.net/"
 DOWNLOADS=""
 
 LICENCES="GPL-2"
-SLOT="0"
+SLOT="2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
