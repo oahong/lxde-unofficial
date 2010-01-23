@@ -10,7 +10,10 @@ PLATFORMS="~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
+    build:
+        x11-proto/xproto
     build+run:
+        app-text/iso-codes
         sys-libs/pam
         x11-libs/libX11
         x11-libs/libXmu
