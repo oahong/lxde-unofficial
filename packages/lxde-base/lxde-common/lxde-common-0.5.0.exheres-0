@@ -17,7 +17,8 @@ DEPENDENCIES="
 src_prepare() {
     # Use tango icon theme
     edo sed -e 's/nuoveXT2/tango/'  \
-        -i desktop.conf
-    #autotools_src_prepare
+        -i desktop.conf \
+        -e '/lxsession/s/$/ -e LXDE/' \
+        -i startlxde.in
 }
 
