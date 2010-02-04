@@ -11,7 +11,7 @@ DOWNLOADS=""
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS=""
+MYOPTIONS="demo [[ description = [ Build a libfm based demo file manager ] ]]"
 
 DEPENDENCIES="
     build:
@@ -24,13 +24,18 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.16.0]
 "
 
-RESTRICT="test" # libfm has a empty po dir.
+RESTRICT="test" # intltool-update fails
 BUGS_TO="oahong@gmail.com"
-#REMOTE_IDS="sourceforge:pcmanfm"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-largefile )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( demo )
 
 src_prepare() {
-    ./autogen.sh || die
+    edo ./autogen.sh
+}
+
+src_install() {
+    default
+    ! option demo && edo rmdir "${IMAGE}/usr/bin"
 }
 
