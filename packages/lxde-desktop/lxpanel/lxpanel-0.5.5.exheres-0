@@ -19,16 +19,11 @@ DEPENDENCIES="
         sys-sound/alsa-lib
         x11-libs/libX11
     suggestion:
+        gnome-desktop/gnome-terminal
         net-www/firefox
-        lxde-desktop/lxterminal
         x11-apps/pcmanfm
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    #NOTE: Default terminal in lauchbar should be set in lxde-common
-    #      if you're using lxpanel with lxde, not here.
-    "${FILES}"/${PN}-default-apps.patch
-)
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-alsa --enable-plugins-loading
     --with-plugins=all
