@@ -1,0 +1,33 @@
+# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A glib/gio-based lib used to develop file managers"
+HOMEPAGE="http://pcmanfm.sourceforge.net"
+DOWNLOADS="mirror://sourceforge/pcmanfm/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS="demo [[ description = [ Build a ${PN} based demo file manager ] ]]"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-libs/glib:2[>=2.18.0]
+        lxde-base/menu-cache
+        x11-libs/gtk+:2[>=2.16.0]
+"
+
+#RESTRICT="test" # intltool-update fails
+BUGS_TO="oahong@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-largefile )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( demo )
+
+src_install() {
+    default
+    ! option demo && edo rmdir "${IMAGE}/usr/bin"
+}
+

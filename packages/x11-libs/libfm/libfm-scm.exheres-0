@@ -2,40 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="git://pcmanfm.git.sourceforge.net/gitroot/pcmanfm/libfm"
-require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require libfm scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
-SUMMARY="A glib/gio-based lib used to develop file managers"
-HOMEPAGE="http://pcmanfm.sourceforge.net"
 DOWNLOADS=""
 
-LICENCES="GPL-2"
-SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS="demo [[ description = [ Build a libfm based demo file manager ] ]]"
-
-DEPENDENCIES="
-    build:
-        dev-util/intltool[>=0.40.0]
-        dev-util/pkg-config
-        sys-devel/gettext
-    build+run:
-        dev-libs/glib:2
-        lxde-base/menu-cache
-        x11-libs/gtk+:2[>=2.16.0]
-"
-
-RESTRICT="test" # intltool-update fails
-BUGS_TO="oahong@gmail.com"
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-largefile )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( demo )
 
 src_prepare() {
     edo ./autogen.sh
-}
-
-src_install() {
-    default
-    ! option demo && edo rmdir "${IMAGE}/usr/bin"
 }
 
