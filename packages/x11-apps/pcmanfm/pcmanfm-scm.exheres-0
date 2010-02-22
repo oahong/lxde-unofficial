@@ -1,47 +1,14 @@
-# Copyright 2009 Gaute Hope <eg@gaute.vetsj.com>
-# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Copyright 2010 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="git://pcmanfm.git.sourceforge.net/gitroot/pcmanfm/pcmanfm"
-require freedesktop-mime freedesktop-desktop
-require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require pcmanfm2 scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
-SUMMARY="PCMan file manager, a fast graphical file manager"
-HOMEPAGE="http://pcmanfm.sourceforge.net/"
 DOWNLOADS=""
 
-LICENCES="GPL-2"
-SLOT="2"
-PLATFORMS="~amd64 ~x86"
-MYOPTIONS=""
-
-DEPENDENCIES="
-    build:
-        dev-util/intltool[>=0.40.0]
-        dev-util/pkg-config
-        sys-devel/gettext
-    build+run:
-        dev-libs/glib:2[>=2.12]
-        lxde-base/menu-cache
-        x11-libs/gtk+:2[>=2.16.0]
-        x11-libs/libfm
-"
-
-RESTRICT="test" # translations is not available
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-largefile' )
+PLATFORMS="~x86"
 
 src_prepare() {
     edo ./autogen.sh
-}
-
-pkg_postinst() {
-    freedesktop-mime_pkg_postinst
-    freedesktop-desktop_pkg_postinst
-}
-
-pkg_postrm() {
-    freedesktop-mime_pkg_postrm
-    freedesktop-desktop_pkg_postrm
 }
 
