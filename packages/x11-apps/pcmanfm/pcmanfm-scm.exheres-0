@@ -6,7 +6,7 @@ require pcmanfm2 scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automa
 
 DOWNLOADS=""
 
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 
 src_prepare() {
     edo ./autogen.sh
