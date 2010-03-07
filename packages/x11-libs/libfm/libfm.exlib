@@ -7,7 +7,7 @@ DOWNLOADS="mirror://sourceforge/pcmanfm/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
-MYOPTIONS="demo [[ description = [ Build a ${PN} based demo file manager ] ]]"
+MYOPTIONS="debug demo [[ description = [ Build a ${PN} based demo file manager ] ]]"
 
 DEPENDENCIES="
     build:
@@ -16,7 +16,7 @@ DEPENDENCIES="
         sys-devel/gettext
     build+run:
         dev-libs/glib:2[>=2.18.0]
-        lxde-base/menu-cache
+        lxde-base/menu-cache[>=0.3.2]
         x11-libs/gtk+:2[>=2.16.0]
 "
 
@@ -24,7 +24,7 @@ DEPENDENCIES="
 BUGS_TO="oahong@gmail.com"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-largefile )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( demo )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug demo )
 
 src_install() {
     default
