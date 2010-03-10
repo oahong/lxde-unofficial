@@ -19,10 +19,12 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config
         sys-devel/gettext
+        x11-proto/xproto
     build+run:
         dev-libs/glib:2[>=2.12]
         lxde-base/menu-cache[>=0.3.2]
         x11-libs/gtk+:2[>=2.16.0]
+        x11-libs/libX11
         x11-libs/libfm
     recommendation:
         lxde-desktop/lxmenu-data
