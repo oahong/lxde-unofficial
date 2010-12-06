@@ -7,14 +7,14 @@ SUMMARY="Default X11 session manager of LXDE"
 
 LICENCES="GPL-2"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="hal [[ description = [ Build with HAL support for reboot/shutdown/suspend ] ]]"
+MYOPTIONS="dbus [[ description = [ Build with D-Bus support for reboot/shutdown/suspend ] ]]"
 
 DEPENDENCIES="
     build+run:
-        hal? ( sys-apps/dbus )
+        dbus? ( sys-apps/dbus )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( hal )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus )
 # changelog is not really a changelog
 DEFAULT_SRC_INSTALL_EXCLUDE=( ChangeLog )
 
