@@ -1,0 +1,23 @@
+# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxde
+
+SUMMARY="GUI login manager for LXDE"
+
+LICENCES="GPL-3"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        x11-proto/xproto
+    build+run:
+        app-text/iso-codes
+        sys-libs/pam
+        x11-libs/libX11
+        x11-libs/libXmu
+        sys-auth/ConsoleKit
+"
+
+RESTRICT="test"
+
