@@ -6,9 +6,13 @@ require libfm scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=
 
 DOWNLOADS=""
 
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 
 src_prepare() {
     edo ./autogen.sh
 }
 
+src_install() {
+    default
+    keepdir /usr/${LIBDIR}/gio/modules
+}
