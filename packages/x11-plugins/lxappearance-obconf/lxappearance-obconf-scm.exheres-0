@@ -1,0 +1,33 @@
+# Copyright 2011 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="git://lxde.git.sourceforge.net/gitroot/lxde/${PN}"
+require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="LXAppearance ObConf plugin"
+HOMEPAGE="http://www.lxde.org"
+DOWNLOADS=""
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-libs/glib:2
+        lxde-desktop/lxappearance
+        x11-libs/gtk+:2
+        x11-wm/openbox[>=3.4.2]
+"
+
+BUGS_TO="oahong@oahong.me"
+
+src_prepare() {
+    edo ./autogen.sh
+}
+
