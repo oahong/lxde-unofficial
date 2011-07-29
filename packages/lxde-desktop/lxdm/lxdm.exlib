@@ -1,4 +1,4 @@
-# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Copyright 2008 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require lxde systemd-service [ systemd_files=[ lxdm.service ] ]
@@ -6,23 +6,35 @@ require lxde systemd-service [ systemd_files=[ lxdm.service ] ]
 SUMMARY="GUI login manager for LXDE"
 
 LICENCES="GPL-3"
-MYOPTIONS=""
+MYOPTIONS="debug gtk3"
 
 DEPENDENCIES="
     build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
         x11-proto/xproto
     build+run:
         app-text/iso-codes
+        dev-libs/glib:2
+        sys-auth/ConsoleKit
         sys-libs/pam
         x11-libs/libX11
         x11-libs/libXmu
-        sys-auth/ConsoleKit
+        !gtk3? ( x11-libs/gtk+:2 )
+        gtk3? ( x11-libs/gtk+:3 )
 "
 
 RESTRICT="test"
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk3 )
+
+src_prepare() {
+    rm -v data/${PN}.conf
+}
 
 src_install() {
     default
+    edo rm "${IMAGE}"/usr/sbin/${PN}
     install_systemd_files
     if option systemd ; then
         insinto /etc/tmpfiles.d
