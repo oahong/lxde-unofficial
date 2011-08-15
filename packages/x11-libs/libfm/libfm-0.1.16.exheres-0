@@ -5,5 +5,3 @@ require libfm
 
 PLATFORMS="~amd64 ~x86"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-fix-linkage.patch )
-

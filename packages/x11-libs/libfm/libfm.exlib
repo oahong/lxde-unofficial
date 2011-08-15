@@ -18,9 +18,10 @@ DEPENDENCIES="
         sys-devel/gettext
         doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:
-        dev-libs/glib:2[>=2.18.0]
+        dev-libs/glib:2[>=2.24.0]
         lxde-base/menu-cache[>=0.3.2]
-        x11-libs/gtk+:2[>=2.16.0]
+        x11-libs/gtk+:2[>=2.18.0]
+        x11-libs/pango[>=1.16.0]
         udisks? (
             sys-apps/udisks
             dev-libs/dbus-glib
