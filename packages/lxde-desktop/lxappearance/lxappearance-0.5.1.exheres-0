@@ -7,12 +7,20 @@ SUMMARY="LXAppearance is a gtk+ theme switcher for the LXDE project"
 
 LICENCES="GPL-3"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="debug"
+MYOPTIONS="debug gtk3"
 
-DEPENDENCIES+="
+DEPENDENCIES="
     build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
         x11-proto/xproto
     build+run:
+        dev-libs/glib
         x11-libs/libX11
+        !gtk3? ( x11-libs/gtk+:2 )
+        gtk3? ( x11-libs/gtk+:3 )
 "
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk3 )
 
