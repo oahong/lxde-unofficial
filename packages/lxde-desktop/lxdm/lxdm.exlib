@@ -3,6 +3,8 @@
 
 require lxde systemd-service [ systemd_files=[ lxdm.service ] ]
 
+export_exlib_phases pkg_pretend src_prepare src_install
+
 SUMMARY="GUI login manager for LXDE"
 
 LICENCES="GPL-3"
