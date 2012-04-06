@@ -28,6 +28,7 @@ DEPENDENCIES="
 "
 
 RESTRICT="test"
+[[ ${PV} == "0.4.1" ]] && DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-fixloop.patch )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk3 )
 
 lxdm_pkg_pretend() {
@@ -39,6 +40,7 @@ lxdm_pkg_pretend() {
 }
 
 lxdm_src_prepare() {
+    default
     rm -v data/${PN}.conf
 }
 
