@@ -1,0 +1,16 @@
+Source: bug report here "https://sourceforge.net/tracker/?func=detail&aid=3528633&group_id=180858&atid=894869"
+Upstream: reported to upstream
+Reason: fix linking with new glib
+
+*** configure.ac.org	2012-05-20 18:26:47.505086321 +0200
+--- configure.ac	2012-05-20 18:29:28.619092378 +0200
+***************
+*** 40,45 ****
+--- 40,46 ----
+  pkg_modules="$pkg_modules \
+               gio-unix-2.0 \
+               gthread-2.0 \
++ 	     gmodule-2.0 \
+               libmenu-cache"
+  #             libstartup-notification-1.0"
+  PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
