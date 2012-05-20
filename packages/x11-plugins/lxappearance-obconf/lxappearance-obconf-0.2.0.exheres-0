@@ -1,0 +1,28 @@
+# Copyright 2011 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxde
+
+SUMMARY="LXAppearance ObConf plugin"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="gtk3"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-libs/glib:2
+        lxde-desktop/lxappearance
+        !gtk3? ( x11-libs/gtk+:2 )
+        gtk3? ( x11-libs/gtk+:3 )
+        x11-wm/openbox[>=3.5.0]
+"
+
+BUGS_TO="oahong@oahong.me"
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk3 )
+
