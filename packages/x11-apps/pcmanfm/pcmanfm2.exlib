@@ -6,7 +6,7 @@ require freedesktop-mime freedesktop-desktop
 
 export_exlib_phases pkg_postinst pkg_postrm
 
-SUMMARY="PCMan file manager, a fast graphical file manager"
+SUMMARY="Next generation PCManFM based on libfm with GIO/GVFS support"
 HOMEPAGE="http://pcmanfm.sourceforge.net"
 DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
 

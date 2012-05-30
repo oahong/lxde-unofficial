@@ -9,6 +9,7 @@ DOWNLOADS=""
 PLATFORMS="~amd64 ~x86"
 
 src_prepare() {
-    edo ./autogen.sh
+    autotools_src_prepare
+    edo intltoolize
 }
 
