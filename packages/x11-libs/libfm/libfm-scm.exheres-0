@@ -8,8 +8,15 @@ DOWNLOADS=""
 
 PLATFORMS="~amd64 ~x86"
 
+DEPENDENCIS="
+    build:
+        app-doc/gtk-doc-autotools
+"
+
 src_prepare() {
-    edo ./autogen.sh
+    edo gtkdocize --copy
+    autotools_src_prepare
+    edo intltoolize
 }
 
 src_install() {
