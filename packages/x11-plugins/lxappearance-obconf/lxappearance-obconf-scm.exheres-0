@@ -28,6 +28,7 @@ DEPENDENCIES="
 BUGS_TO="oahong@oahong.me"
 
 src_prepare() {
-    edo ./autogen.sh
+    autools_src_prepare
+    edo intltoolize
 }
 
