@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="git://pcmanfm.git.sourceforge.net/gitroot/pcmanfm/libfm"
-require libfm scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require libfm scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 ] ]
 
 DOWNLOADS=""
 
@@ -19,7 +19,3 @@ src_prepare() {
     edo intltoolize
 }
 
-src_install() {
-    default
-    keepdir /usr/${LIBDIR}/gio/modules
-}

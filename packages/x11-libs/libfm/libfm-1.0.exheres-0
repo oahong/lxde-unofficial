@@ -5,8 +5,3 @@ require libfm
 
 PLATFORMS="~amd64 ~x86"
 
-src_install() {
-    default
-    keepdir /usr/${LIBDIR}/gio/modules
-}
-

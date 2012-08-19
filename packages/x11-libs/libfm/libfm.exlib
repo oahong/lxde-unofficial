@@ -1,4 +1,4 @@
-# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Copyright 2009, 2010, 2011, 2012 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="A glib/gio-based lib used to develop file managers"
@@ -9,6 +9,7 @@ LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS="debug doc
     demo [[ description = [ Build ${PN}-demo file manager ] ]]
+    exif [[ description = [ Build with libexif for faster thumbnail loading ] ]]
     udisks [[ description = [ Enable UDisks support for automounting ] ]]"
 
 DEPENDENCIES="
@@ -18,18 +19,21 @@ DEPENDENCIES="
         sys-devel/gettext
         doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:
-        dev-libs/glib:2[>=2.24.0]
+        dev-libs/glib:2[>=2.26.0]
         lxde-base/menu-cache[>=0.3.2]
         x11-libs/gtk+:2[>=2.18.0]
         x11-libs/pango[>=1.16.0]
-        udisks? (
-            sys-apps/udisks
-            dev-libs/dbus-glib
-        )
+        exif? ( media-libs/libexif )
+        udisks? ( dev-libs/dbus-glib )
 "
 
 BUGS_TO="oahong@gmail.com"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-largefile )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug demo 'doc gtk-doc' udisks )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug demo 'doc gtk-doc' exif udisks )
+
+libfm_src_install() {
+    default
+    keepdir /usr/${LIBDIR}/gio/modules
+}
 
