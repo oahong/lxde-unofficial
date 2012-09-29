@@ -10,7 +10,10 @@ SLOT="0"
 MYOPTIONS="debug doc
     demo [[ description = [ Build ${PN}-demo file manager ] ]]
     exif [[ description = [ Build with libexif for faster thumbnail loading ] ]]
-    udisks [[ description = [ Enable UDisks support for automounting ] ]]"
+    udisks [[ description = [ Enable UDisks support for automounting ] ]]
+    vala [[ description = [ Add custom actions in context menu ] ]]
+    ( gtk gtk3 ) [[ number-selected = exactly-one ]]
+"
 
 DEPENDENCIES="
     build:
@@ -23,14 +26,24 @@ DEPENDENCIES="
         lxde-base/menu-cache[>=0.3.2]
         x11-libs/gtk+:2[>=2.18.0]
         x11-libs/pango[>=1.16.0]
+        gtk? ( 
+            x11-libs/cario[>=1.8.0]
+            x11-libs/gtk+:2.0[>=2.18.0]
+        )
+        gtk3? (
+            x11-libs/cairo[>=1.8.0]
+            x11-libs/gtk+:3
+        )
         exif? ( media-libs/libexif )
         udisks? ( dev-libs/dbus-glib )
+        vala? ( dev-lang/vala:*[>=0.13.0] )
 "
 
 BUGS_TO="oahong@gmail.com"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-largefile )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug demo 'doc gtk-doc' exif udisks )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug demo 'doc gtk-doc' exif udisks 'vala actions' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'gtk gtk 2' 'gtk3 gtk 3' )
 
 libfm_src_install() {
     default
