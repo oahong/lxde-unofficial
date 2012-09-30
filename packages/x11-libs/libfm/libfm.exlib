@@ -27,8 +27,8 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.18.0]
         x11-libs/pango[>=1.16.0]
         gtk? ( 
-            x11-libs/cario[>=1.8.0]
-            x11-libs/gtk+:2.0[>=2.18.0]
+            x11-libs/cairo[>=1.8.0]
+            x11-libs/gtk+:2[>=2.18.0]
         )
         gtk3? (
             x11-libs/cairo[>=1.8.0]
