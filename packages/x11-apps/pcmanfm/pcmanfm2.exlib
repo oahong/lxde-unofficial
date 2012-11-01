@@ -22,21 +22,18 @@ DEPENDENCIES="
         x11-proto/xproto
     build+run:
         dev-libs/glib:2[>=2.18.0]
-        lxde-base/menu-cache[>=0.3.2]
         x11-libs/pango[>=1.20.0]
         x11-libs/libX11
-        x11-libs/libfm[>=1.0.1][gtk?][gtk3?]
+        x11-libs/libfm[>=1.1.0][gtk?][gtk3?]
         gtk? ( x11-libs/gtk+:2 ) 
         gtk3? ( x11-libs/gtk+:3 )
     run:
         !x11-apps/pcmanfm:2
-    recommendation:
-        lxde-desktop/lxmenu-data
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-largefile )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'gtk gtk 2' 'gtk3 gkt 3' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'gtk gtk 2' 'gtk3 gtk 3' )
 
 pcmanfm2_pkg_postinst() {
     freedesktop-mime_pkg_postinst
