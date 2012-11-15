@@ -12,7 +12,7 @@ MYOPTIONS="debug gtk3"
 DEPENDENCIES="
     build:
         dev-util/intltool
-        dev-util/pkg-config
+        virtual/pkg-config
         sys-devel/gettext
         x11-proto/xproto
     build+run:

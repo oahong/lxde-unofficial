@@ -20,7 +20,7 @@ MYOPTIONS="debug doc
 DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
-        dev-util/pkg-config
+        virtual/pkg-config
         sys-devel/gettext
         doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:

@@ -12,7 +12,7 @@ MYOPTIONS="( gtk gtk3 ) [[ number-selected = exactly-one ]]"
 DEPENDENCIES="
     build:
         dev-util/intltool
-        dev-util/pkg-config
+        virtual/pkg-config
         sys-devel/gettext
     build+run:
         gtk3? ( x11-libs/gtk+:3 )
