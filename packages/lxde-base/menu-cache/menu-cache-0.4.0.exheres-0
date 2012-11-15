@@ -17,10 +17,16 @@ Advantages:
 4. Less unnecessary and complicated file monitoring.
 5. Heavily reduced disk I/O.
 "
+DOWNLOADS="http://oahong.me/~oahong/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="debug"
+MYOPTIONS="debug gtk-doc"
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug )
+DEPENDENCIES+="
+    build:
+        gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk-doc )
 
