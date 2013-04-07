@@ -1,0 +1,22 @@
+# Copyright 2013 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PNV=${PNV}-Source
+require pcmanfm-qt
+
+DOWNLOADS="mirror://sourceforge/${PN/-qt}/${MY_PNV}.tar.bz2"
+
+PLATFORMS="~amd64"
+
+WORK=${WORKBASE}/${MY_PNV}
+
+src_prepare() {
+    sed -e 's/DESTINATION lib/DESTINATION lib${LIB_SUFFIX}/g' \
+        -i libfm-qt/CMakeLists.txt
+}
+
+src_install() {
+    cmake_src_install
+    edo rmdir "${IMAGE}"/usr/include/libfm-qt/translations
+}
+

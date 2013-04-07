@@ -1,0 +1,35 @@
+# Copyright 2013 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require cmake freedesktop-mime freedesktop-desktop
+
+export_exlib_phases pkg_postinst pkg_postrm
+
+SUMMARY="PCManFM-Qt is the Qt port of the LXDE file manager PCManFM"
+HOMEPAGE="http://pcmanfm.sourceforge.net"
+
+LICENCES="GPL-2"
+MYOPTIONS=""
+SLOT="0"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        x11-proto/xproto
+    build+run:
+        dev-libs/glib:2[>=2.18.0]
+        x11-libs/libX11
+        x11-libs/libfm[>=1.1.0]
+        x11-libs/qt:4[>=4.4.6][dbus]
+"
+
+pcmanfm-qt_pkg_postinst() {
+    freedesktop-mime_pkg_postinst
+    freedesktop-desktop_pkg_postinst
+}
+
+pcmanfm-qt_pkg_postrm() {
+    freedesktop-mime_pkg_postrm
+    freedesktop-desktop_pkg_postrm
+}
+
