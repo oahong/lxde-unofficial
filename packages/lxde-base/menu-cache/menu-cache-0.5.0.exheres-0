@@ -17,7 +17,6 @@ Advantages:
 4. Less unnecessary and complicated file monitoring.
 5. Heavily reduced disk I/O.
 "
-DOWNLOADS="http://oahong.me/~oahong/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 PLATFORMS="~amd64 ~x86"
