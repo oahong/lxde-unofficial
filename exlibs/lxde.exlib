@@ -39,9 +39,6 @@ if ever at_least scm ; then
     DOWNLOADS=""
 fi
 
-BUGS_TO="oahong@gmail.com"
-#REMOTE_IDS="sourceforge:lxde"
-
 lxde_src_prepare () {
     edo ./autogen.sh
 }
