@@ -2,7 +2,7 @@
 # Copyright 2010 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public Licence v2
 
-require lxde autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require lxde [ suffix=xz ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 SUMMARY="LXAppearance is a gtk+ theme switcher for the LXDE project"
 
 LICENCES="GPL-3"
