@@ -5,7 +5,7 @@ export_exlib_phases pkg_pretend src_install
 
 SUMMARY="A glib/gio-based lib used to develop file managers"
 HOMEPAGE="http://pcmanfm.sourceforge.net"
-DOWNLOADS="mirror://sourceforge/pcmanfm/${PNV}.tar.gz"
+DOWNLOADS="mirror://sourceforge/pcmanfm/${PNV}.tar.xz"
 
 LICENCES="GPL-2"
 SLOT="0"
