@@ -6,31 +6,42 @@ require lxqt
 SUMMARY="The LXQt desktop panel"
 
 PLATFORMS="~amd64"
-MYOPTIONS=""
+MYOPTIONS="pulse alsa"
 
 # TODO: plugin options and dependencies
 DEPENDENCIES="
     build:
+        virtual/pkg-config
         x11-proto/xproto
     build+run:
+        dev-libs/icu [[ note = [ worldclock plugin ] ]]
+        lxde-base/menu-cache[>=0.3.3] [[ note = [ main menu plugin ] ]]
         lxqt/liblxqt
         lxqt/liblxqt-mount
-        lxqt/lxqt-globalkeys
         lxqt/libqtxdg
+        lxqt/lxqt-globalkeys
         sys-libs/libstatgrab [[ note = [ cpuload and networkmonitor plugin ] ]]
         sys-libs/libsysstat [[ note = [ sysstat plugin ] ]]
-        || (
-            media-sound/pulseaudio
-            media-sound/alsa
-        ) [[ note = [ volume plugin ] ]]
-        dev-libs/icu [[ note = [ worldclock plugin ] ]]
         x11-libs/libX11
         x11-libs/libXext
         x11-libs/qt:4[dbus]
+        (
+            alsa? ( sys-sound/alsa-lib )
+            pulse? ( media-sound/pulseaudio )
+        ) [[ note = [ volume plugin, needs pulseaudio and/or alsa ] ]]
+        (
+            x11-libs/libXcomposite
+            x11-libs/libXdamage
+            x11-libs/libXrender
+        ) [[ note = [ system tray plugin ] ]]
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
     # sys-apps/lm_sensors
-    -DSENSORS_PLUGIN=NO
+    -DSENSORS_PLUGIN:bool=TRUE
+)
+CMAKE_SRC_CONFIGURE_OPTIONS=(
+    'alsa VOLUME_USE_ALSA'
+    'pulse VOLUME_USE_PULSEAUDIO'
 )
 
