@@ -1,0 +1,21 @@
+# Copyright 2014 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxqt
+
+SUMMARY="LXQt system settings center"
+
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        x11-proto/xproto
+    build+run:
+        lxqt/liblxqt
+        lxqt/libqtxdg
+        x11-libs/libX11
+        x11-libs/libXext
+        x11-libs/qt:4
+"
+

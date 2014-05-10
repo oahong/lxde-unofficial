@@ -1,0 +1,21 @@
+# Copyright 2014 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxqt
+
+SUMMARY="Tool used to launch programs quickly by typing their names"
+
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        virtual/pkg-config
+    build+run:
+        lxqt/liblxqt
+        lxqt/libqtxdg
+        lxqt/lxqt-globalkeys
+        lxde-base/menu-cache[>=0.3.3]
+        x11-libs/qt:4
+"
+

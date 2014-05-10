@@ -1,0 +1,16 @@
+# Copyright 2014 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxqt
+
+SUMMARY="OpenSSH helper component for LXQt"
+
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        lxqt/liblxqt
+        x11-libs/qt:4
+"
+

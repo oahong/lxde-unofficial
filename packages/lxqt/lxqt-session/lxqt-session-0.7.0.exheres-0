@@ -1,0 +1,24 @@
+# Copyright 2014 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxqt
+
+SUMMARY="An alternative session manager ported from the original razor-session"
+
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        virtual/pkg-config
+        x11-proto/xproto
+    build+run:
+        lxqt/liblxqt
+        x11-libs/qt:4
+        x11-libs/libX11
+    run:
+        x11-apps/xdg-utils
+"
+
+CMAKE_SRC_CONFIGURE_PARAMS=( -DBUNDLE_XDG_UTILS:bool=No )
+
