@@ -1,0 +1,16 @@
+# Copyright 2009 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require freedesktop-desktop
+
+SUMMARY="Default icon theme (nuoveXT2) for LXDE"
+HOMEPAGE="http://www.lxde.org"
+DOWNLOADS="mirror://sourceforge/lxde/${PNV}.tar.xz"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
