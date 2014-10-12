@@ -1,11 +1,11 @@
 # Copyright 2009 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require lxde [ suffix=xz ]
+require lxde
 
-SUMMARY="Data files for LXDE desktop menus"
+SUMMARY="Freedesktop.org application menu definition files"
 
-LICENCES="GPL-2" #FIXME
+LICENCES="LGPL-2.1"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
