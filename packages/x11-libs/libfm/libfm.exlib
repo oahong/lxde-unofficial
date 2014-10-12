@@ -1,7 +1,7 @@
-# Copyright 2009-2013 Hong Hao <oahong@gmail.com>
+# Copyright 2009-2014 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-export_exlib_phases pkg_pretend src_install
+export_exlib_phases src_configure
 
 SUMMARY="A glib/gio-based lib used to develop file managers"
 HOMEPAGE="http://pcmanfm.sourceforge.net"
@@ -15,6 +15,12 @@ MYOPTIONS="debug doc
     udisks [[ description = [ Enable UDisks support for automounting ] ]]
     vala [[ description = [ Add custom actions in context menu ] ]]
     ( gtk gtk3 ) [[ number-selected = exactly-one ]]
+    ( linguas:
+        af ar be bg bn bn_IN ca cs da de el en_GB es et eu fa fi fo fr
+        gl he hr hu id is it ja kk ko lg lt ml ms nb nl nn pa pl ps pt
+        pt_BR ro ru sk sl sr sr@latin sv te th tr tt_RU ug uk ur ur_PK
+        vi zh_CN zh_TW
+    )
 "
 
 DEPENDENCIES="
@@ -26,36 +32,34 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.26.0]
         lxde-base/menu-cache[>=0.3.2]
-        x11-libs/gtk+:2[>=2.18.0]
-        x11-libs/pango[>=1.16.0]
         gtk? ( 
             x11-libs/cairo[>=1.8.0]
             x11-libs/gtk+:2[>=2.18.0]
+            x11-libs/pango[>=1.18.0]
         )
         gtk3? (
             x11-libs/cairo[>=1.8.0]
             x11-libs/gtk+:3
+            x11-libs/pango[>=1.18.0]
         )
         exif? ( media-libs/libexif )
         udisks? ( dev-libs/dbus-glib )
         vala? ( dev-lang/vala:*[>=0.13.0] )
+        !x11-libs/libfm[<1.1.0] [[
+            description = [ /usr/include/libfm directory will be overwritten by a symlink in new releases ]
+            resolution = uninstall-blocked-after
+        ]]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-largefile )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug demo 'doc gtk-doc' exif udisks 'vala actions' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'gtk gtk 2' 'gtk3 gtk 3' )
-
-libfm_pkg_pretend() {
-    if has_version 'x11-libs/libfm[<1.1.0]' ; then
-        ewarn "\"/usr/include/libfm\" directory will be overwritten by a symlink of"
-        ewarn "\"/usr/include/libfm-1.0\" in new releases"
-        ewarn "Please uninstall the old libfm first."
-        die "Package conflicts"
-    fi
-}
-
-libfm_src_install() {
-    default
-    keepdir /usr/${LIBDIR}/gio/modules
+libfm_src_configure() {
+    econf --enable-largefile    \
+        $(option_enable debug ) \
+        $(option_enable demo )  \
+        $(option_enable doc gtk-doc ) \
+        $(option_enable exif ) \
+        $(option_enable udisks ) \
+        $(option_enable vala actions ) \
+        $(option gtk && echo '--with-gtk=2' ) \
+        $(option gtk3 && echo '--with-gtk=3')
 }
 
