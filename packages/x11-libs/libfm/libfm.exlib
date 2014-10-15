@@ -7,7 +7,7 @@ SUMMARY="A glib/gio-based lib used to develop file managers"
 HOMEPAGE="http://pcmanfm.sourceforge.net"
 DOWNLOADS="mirror://sourceforge/pcmanfm/${PNV}.tar.xz"
 
-LICENCES="GPL-2"
+LICENCES="LGPL-2.1"
 SLOT="0"
 MYOPTIONS="debug doc
     demo [[ description = [ Build ${PN}-demo file manager ] ]]
