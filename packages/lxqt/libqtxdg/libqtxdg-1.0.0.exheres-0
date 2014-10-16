@@ -11,12 +11,15 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        x11-libs/qt:4
         sys-apps/file
+        x11-libs/qtbase:5
+        x11-libs/qttools:5
 "
 
+WORK=${WORKBASE}/${PN}
+CMAKE_SOURCE=${WORK}
+
 CMAKE_SRC_CONFIGURE_PARAMS=(
-    -DUSE_QT5:bool=OFF
     -DBUILD_TESTS:bool=OFF
 )
 
