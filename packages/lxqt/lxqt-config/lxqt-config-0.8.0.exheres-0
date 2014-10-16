@@ -3,7 +3,7 @@
 
 require lxqt
 
-SUMMARY="LXQt system settings center"
+SUMMARY="LXQt system control center"
 
 PLATFORMS="~amd64"
 MYOPTIONS=""
@@ -16,6 +16,8 @@ DEPENDENCIES="
         lxqt/libqtxdg
         x11-libs/libX11
         x11-libs/libXext
-        x11-libs/qt:4
+        x11-libs/qtbase
+        x11-libs/qttools
+        x11-libs/qtx11extras
 "
 
