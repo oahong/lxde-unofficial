@@ -2,8 +2,9 @@
 # Distributed under the terms of the GNU General Purpose License v2
 
 myexparam release=${PV}
-require cmake
-# [ api=2 out_of_source=false ]
+require cmake [ api=2 ]
+
+export_exlib_phases pkg_setup
 
 HOMEPAGE="http://www.lxqt.org"
 DOWNLOADS="http://lxqt.org/downloads/lxqt/$(exparam release)/${PNV}.tar.xz"
@@ -18,5 +19,8 @@ if ever at_least scm ; then
     DOWNLOADS=""
 fi
 
-WORK=${WORKBASE}
+lxqt_pkg_setup() {
+    einfo "Building against QT5"
+    export USE_QT5=ON
+}
 
