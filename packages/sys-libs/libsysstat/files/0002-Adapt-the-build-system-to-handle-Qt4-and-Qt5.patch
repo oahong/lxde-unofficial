@@ -1,0 +1,215 @@
+From 80275532b360ac055362588c5bf6d31bb5cecffb Mon Sep 17 00:00:00 2001
+From: =?utf8?q?Lu=C3=ADs=20Pereira?= <luis.artur.pereira@gmail.com>
+Date: Fri, 6 Jun 2014 10:26:57 -0700
+Subject: [PATCH 2/4] Adapt the build system to handle Qt4 and Qt5
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf8
+Content-Transfer-Encoding: 8bit
+
+The library name for Qt4 is sysstat, for Qt5 is sysstat-qt5.
+The headers for Qt4 are:
+#include <sysstat/version.h> and #include <SysStat/Version>
+The headers for Qt5 are:
+#include <sysstat-qt5.version.h> and #include <SysStat/Version>
+
+New code should use the portable way:
+#include <SysStat/Version>
+as it works with Qt4 and Qt5.
+
+Signed-off-by: Luís Pereira <luis.artur.pereira@gmail.com>
+---
+ CMakeLists.txt                      | 80 +++++++++++++++++++++++++++++--------
+ cmake/create_portable_headers.cmake | 30 ++++++++++++++
+ cmake/sysstat-config.cmake.in       |  2 +-
+ 3 files changed, 95 insertions(+), 17 deletions(-)
+ create mode 100644 cmake/create_portable_headers.cmake
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9377abe..b528641 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -2,6 +2,16 @@ cmake_minimum_required(VERSION 2.6)
+ 
+ project(libsysstat)
+ 
++option(USE_QT5 "Build with Qt5." OFF)
++if (USE_QT5 AND USE_QT4)
++    message(FATAL "USE_QT4 and USE_QT5 both set. Please choose *only* one Qt version")
++elseif(USE_QT5)
++    set(USE_QT4 OFF)
++else()
++    set(USE_QT4 ON)
++endif()
++
++
+ # Set default installation paths
+ set(LIB_INSTALL_DIR "lib${LIB_SUFFIX}" CACHE PATH "Installation path for libraries")
+ set(INCLUDE_INSTALL_DIR include CACHE PATH "Installation path for includes")
+@@ -22,9 +32,21 @@ if (CMAKE_COMPILER_IS_GNUCXX)
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden -fno-exceptions -Wall")
+ endif()
+ 
+-find_package(Qt4 REQUIRED)
+-include(${QT_USE_FILE})
++if (USE_QT5)
++    cmake_minimum_required(VERSION 2.8.11)
++    find_package(Qt5Core REQUIRED QUIET)
++    find_package(Qt5LinguistTools REQUIRED QUIET)
++    set(QT_VERSION_SUFFIX "-qt5")
++    message(STATUS "Building with Qt${Qt5Core_VERSION_STRING}")
++else()
++    find_package(Qt4 REQUIRED)
++    include(${QT_USE_FILE})
++    set(QT_VERSION_SUFFIX "")
++    message(STATUS "Building with Qt${QTVERSION}")
++endif()
+ 
++set(SYSSTAT_LIBRARY_NAME "sysstat${QT_VERSION_SUFFIX}")
++set(HEADER_NAMESPACE "SysStat")
+ 
+ set(SYSSTAT_PUBLIC_HDRS
+     version.h
+@@ -35,6 +57,15 @@ set(SYSSTAT_PUBLIC_HDRS
+     netstat.h
+ )
+ 
++set(SYSSTAT_PUBLIC_CLASSES
++    Version
++    Global
++    BaseStat
++    CpuStat
++    MemStat
++    NetStat
++)
++
+ set(SYSSTAT_PRIVATE_HDRS
+     version_p.h
+     basestat_p.h
+@@ -72,44 +103,61 @@ file(GLOB SYSSTAT_TS_FILES
+ 
+ #**********************************************************
+ 
+-
+-QT4_WRAP_CPP(SYSSTAT_CXX ${SYSSTAT_MOCS})
+-qt4_add_translation(SYSSTAT_QM_FILES ${SYSSTAT_TS_FILES})
++if (USE_QT5)
++    QT5_WRAP_CPP(SYSSTAT_CXX ${SYSSTAT_MOCS})
++    qt5_add_translation(SYSSTAT_QM_FILES ${SYSSTAT_TS_FILES})
++else()
++    QT4_WRAP_CPP(SYSSTAT_CXX ${SYSSTAT_MOCS})
++    qt4_add_translation(SYSSTAT_QM_FILES ${SYSSTAT_TS_FILES})
++endif()
+ 
+ if (NOT CMAKE_BUILD_TYPE)
+     set ( CMAKE_BUILD_TYPE Release )
+ endif (NOT CMAKE_BUILD_TYPE)
+ 
+ 
+-set(APP_SHARE_DIR ${CMAKE_INSTALL_PREFIX}/share/sysstat)
++set(APP_SHARE_DIR "${CMAKE_INSTALL_PREFIX}/share/${SYSSTAT_LIBRARY_NAME}")
+ 
+ include_directories( .. )
+ add_definitions(-DTRANSLATIONS_DIR=\"${APP_SHARE_DIR}\")
+ 
+-add_library(sysstat SHARED ${SYSSTAT_PUBLIC_HDRS} ${SYSSTAT_PRIVATE_HDRS} ${SYSSTAT_SRCS} ${SYSSTAT_CXX} ${SYSSTAT_QM_FILES})
+-target_link_libraries(sysstat  ${QT_LIBRARIES})
++add_library(${SYSSTAT_LIBRARY_NAME} SHARED ${SYSSTAT_PUBLIC_HDRS} ${SYSSTAT_PRIVATE_HDRS} ${SYSSTAT_SRCS} ${SYSSTAT_CXX} ${SYSSTAT_QM_FILES})
++
++if(USE_QT5)
++    target_link_libraries(${SYSSTAT_LIBRARY_NAME}  Qt5::Core)
++else()
++    target_link_libraries(${SYSSTAT_LIBRARY_NAME}  ${QT_LIBRARIES})
++endif()
++
+ 
+-set_target_properties(sysstat PROPERTIES
++set_target_properties(${SYSSTAT_LIBRARY_NAME} PROPERTIES
+   VERSION ${SYSSTAT_VERSION}
+   SOVERSION ${MAJOR_VERSION}
+ )
+ 
+-install(TARGETS sysstat DESTINATION ${LIB_INSTALL_DIR})
+-install(FILES ${SYSSTAT_PUBLIC_HDRS} DESTINATION ${INCLUDE_INSTALL_DIR}/sysstat)
++include(cmake/create_portable_headers.cmake)
++
++create_portable_headers(SYSSTAT_NAMESPACE_HEADERS
++    NAMESPACE "${HEADER_NAMESPACE}/"
++    FILENAMES ${SYSSTAT_PUBLIC_CLASSES}
++)
++install(TARGETS ${SYSSTAT_LIBRARY_NAME} DESTINATION ${LIB_INSTALL_DIR})
++install(FILES ${SYSSTAT_PUBLIC_HDRS} DESTINATION ${INCLUDE_INSTALL_DIR}/${SYSSTAT_LIBRARY_NAME})
++install(FILES ${SYSSTAT_NAMESPACE_HEADERS} DESTINATION ${INCLUDE_INSTALL_DIR}/${SYSSTAT_LIBRARY_NAME}/${HEADER_NAMESPACE})
+ install(FILES ${SYSSTAT_QM_FILES}    DESTINATION ${APP_SHARE_DIR})
+ 
+ include(cmake/create_pkgconfig_file.cmake)
+-create_pkgconfig_file(sysstat "SysStat, a Qt-based interface to system statistics")
++create_pkgconfig_file(${SYSSTAT_LIBRARY_NAME} "SysStat, a Qt-based interface to system statistics")
+ 
+ # cmake config file
+-set(SYSSTAT_INCLUDE_DIR ${CMAKE_INSTALL_PREFIX}/include/sysstat)
++set(SYSSTAT_INCLUDE_DIR ${CMAKE_INSTALL_PREFIX}/include/${SYSSTAT_LIBRARY_NAME})
+ configure_file(
+     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sysstat-config.cmake.in
+-    ${CMAKE_CURRENT_BINARY_DIR}/sysstat-config.cmake
++    ${CMAKE_CURRENT_BINARY_DIR}/${SYSSTAT_LIBRARY_NAME}-config.cmake
+     @ONLY
+ )
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/sysstat-config.cmake DESTINATION share/cmake/sysstat)
+-install(FILES cmake/sysstat_use.cmake DESTINATION share/cmake/sysstat)
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${SYSSTAT_LIBRARY_NAME}-config.cmake DESTINATION share/cmake/${SYSSTAT_LIBRARY_NAME})
++install(FILES cmake/sysstat_use.cmake DESTINATION share/cmake/${SYSSTAT_LIBRARY_NAME})
+ 
+ # building tarball with CPack -------------------------------------------------
+ include (InstallRequiredSystemLibraries)
+diff --git a/cmake/create_portable_headers.cmake b/cmake/create_portable_headers.cmake
+new file mode 100644
+index 0000000..13a67a2
+--- /dev/null
++++ b/cmake/create_portable_headers.cmake
+@@ -0,0 +1,30 @@
++# Creates portable headers; e.g.:
++#     Creates XdgAction from xdgaction.h
++#     XdgAction contents:
++#     #include "xdgaction.h"
++#
++# Use:
++# set(PUBLIC_CLASSES MyClass YourClass)
++# create_portable_headers(PORTABLE_HEADERS ${PUBLIC_CLASSES})
++# PORTABLE_HEADER is an return value that contains the full name of the
++#   generated headers.
++
++function(create_portable_headers outfiles)
++    set(options)
++    set(oneValueArgs NAMESPACE)
++    set(multiValueArgs FILENAMES)
++
++    cmake_parse_arguments(_CREATE_PORTABLE_HEADERS "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
++    set(prefix ${_CREATE_PORTABLE_HEADERS_NAMESPACE})
++    set(class_list ${_CREATE_PORTABLE_HEADERS_FILENAMES})
++    foreach(f ${class_list})
++        string(TOLOWER "${f}.h" _filename)
++
++        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/${f}
++            "#include \"../${_filename}\"")
++
++        list(APPEND ${outfiles} ${CMAKE_CURRENT_BINARY_DIR}/${f})
++    endforeach()
++
++    set(${outfiles} ${${outfiles}} PARENT_SCOPE)
++endfunction()
+diff --git a/cmake/sysstat-config.cmake.in b/cmake/sysstat-config.cmake.in
+index 57d1921..f6a3ae1 100644
+--- a/cmake/sysstat-config.cmake.in
++++ b/cmake/sysstat-config.cmake.in
+@@ -23,7 +23,7 @@ set(SYSSTAT_PATCH_VERSION @PATCH_VERSION@)
+ set(SYSSTAT_VERSION       @SYSSTAT_VERSION@)
+ 
+ set(SYSSTAT_INCLUDE_DIR   @SYSSTAT_INCLUDE_DIR@)
+-set(SYSSTAT_LIBRARY       sysstat)
++set(SYSSTAT_LIBRARY       @SYSSTAT_LIBRARY_NAME@)
+ 
+ set(SYSSTAT_LIBRARIES     ${SYSSTAT_LIBRARY} )
+ set(SYSSTAT_INCLUDE_DIRS  ${SYSSTAT_INCLUDE_DIR} )
+-- 
+2.1.2
+

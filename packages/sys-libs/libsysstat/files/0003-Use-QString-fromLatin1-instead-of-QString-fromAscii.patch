@@ -1,0 +1,31 @@
+From ea4a9d91289176e165d3f94e2ab19d5f103cf7d6 Mon Sep 17 00:00:00 2001
+From: =?utf8?q?Lu=C3=ADs=20Pereira?= <luis.artur.pereira@gmail.com>
+Date: Fri, 6 Jun 2014 09:53:21 -0700
+Subject: [PATCH 3/4] Use QString::fromLatin1() instead of QString::fromAscii()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf8
+Content-Transfer-Encoding: 8bit
+
+QString::fromAscii() is obsolete in Qt5.
+
+Signed-off-by: Luís Pereira <luis.artur.pereira@gmail.com>
+---
+ basestat.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/basestat.cpp b/basestat.cpp
+index ba9c5d4..fa13aab 100644
+--- a/basestat.cpp
++++ b/basestat.cpp
+@@ -127,7 +127,7 @@ QString BaseStatPrivate::readAllFile(const char *filename)
+         ssize_t size = ::read(fd, buffer, bufferSize);
+         ::close(fd);
+         if (size > 0)
+-            result = QString::fromAscii(buffer, size);
++            result = QString::fromLatin1(buffer, size);
+     }
+ 
+     return result;
+-- 
+2.1.2
+
