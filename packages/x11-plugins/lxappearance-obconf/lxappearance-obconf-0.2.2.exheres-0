@@ -3,12 +3,19 @@
 
 require lxde
 
-SUMMARY="LXAppearance ObConf plugin"
+SUMMARY="Openbox plugin for lxappearance"
 
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="gtk3"
+MYOPTIONS="
+    gtk3
+    ( linguas:
+        ar be bg bn_IN cs da de el en@boldquot en_GB en@quot es et eu
+        fa fi fo fr gl he hr hu id it ja kk ko lg lt nb nl pl pt pt_BR
+        ro ru sl sr sr@latin sv te tr tt_RU ug uk vi zh_CN zh_TW
+    )
+"
 
 DEPENDENCIES="
     build:
@@ -18,9 +25,10 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2
         lxde-desktop/lxappearance[gtk3?]
+        x11-libs/gdk-pixbuf:2.0
+        x11-wm/openbox[>=3.5.0]
         !gtk3? ( x11-libs/gtk+:2 )
         gtk3? ( x11-libs/gtk+:3 )
-        x11-wm/openbox[>=3.5.0]
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk3 )
