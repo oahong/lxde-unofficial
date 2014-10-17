@@ -14,8 +14,12 @@ DEPENDENCIES="
         x11-proto/xproto
     build+run:
         lxqt/liblxqt
-        x11-libs/qt:4
+        lxqt/libqtxdg
         x11-libs/libX11
+        x11-libs/libxcb
+        x11-libs/qtbase
+        x11-libs/qttools
+        x11-libs/qtx11extras
     run:
         x11-apps/xdg-utils
 "
