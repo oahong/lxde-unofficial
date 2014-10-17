@@ -3,7 +3,7 @@
 
 require lxqt freedesktop-mime freedesktop-desktop
 
-export_exlib_phases pkg_postinst pkg_postrm
+export_exlib_phases src_install pkg_postinst pkg_postrm
 
 SUMMARY="PCManFM-Qt is the Qt port of the LXDE file manager PCManFM"
 
@@ -21,10 +21,16 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libXext
         x11-libs/libfm[>=1.2.0]
-        x11-libs/qt:4[>=4.6][dbus]
+        x11-libs/libxcb
+        x11-libs/qtbase
+        x11-libs/qttools
+        x11-libs/qtx11extras
 "
 
-CMAKE_SRC_CONFIGURE_PARAMS=( -DUSE_QT5:bool=OFF )
+pcmanfm-qt_src_install() {
+    default
+    edo rmdir "${IMAGE}"/usr/include/libfm-qt/translations
+}
 
 pcmanfm-qt_pkg_postinst() {
     freedesktop-mime_pkg_postinst
