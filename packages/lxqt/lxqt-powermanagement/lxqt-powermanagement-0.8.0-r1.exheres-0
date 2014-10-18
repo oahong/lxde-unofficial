@@ -16,6 +16,7 @@ DEPENDENCIES="
         lxqt/libqtxdg
         x11-libs/libxcb
         x11-libs/qtbase
+        x11-libs/qtsvg
         x11-libs/qttools
         x11-libs/qtx11extras
 "
