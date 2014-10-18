@@ -20,7 +20,7 @@ if ever at_least scm ; then
 fi
 
 lxqt_pkg_setup() {
-    einfo "Building against QT5"
+    # Upstream is dropping QT4 support:
     export USE_QT5=ON
 }
 
