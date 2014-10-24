@@ -45,6 +45,9 @@ DEPENDENCIES="
         x11-apps/pcmanfm
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/53eed543d8736121851a5dd5c402994a3314832a.patch
+)
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --disable-more-warnings
     --disable-indicator-support
