@@ -10,15 +10,11 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
+    build:
+        sys-devel/gettext
+        dev-util/intltool
+        virtual/pkg-config
     run:
-        x11-themes/tango-icon-theme
-    suggestion:
-        x11-apps/xscreensaver
+        lxde-desktop/lxde-icon-theme
 "
-
-src_prepare() {
-    # Use tango icon theme
-    edo sed -e 's/nuoveXT2/tango/'  \
-        -i desktop.conf
-}
 
