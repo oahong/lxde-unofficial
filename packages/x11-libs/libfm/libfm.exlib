@@ -9,18 +9,22 @@ DOWNLOADS="mirror://sourceforge/pcmanfm/${PNV}.tar.xz"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
-MYOPTIONS="debug doc
+MYOPTIONS="debug gtk-doc
     demo [[ description = [ Build ${PN}-demo file manager ] ]]
     exif [[ description = [ Build with libexif for faster thumbnail loading ] ]]
     udisks [[ description = [ Enable UDisks support for automounting ] ]]
     vala [[ description = [ Add custom actions in context menu ] ]]
-    ( gtk gtk3 ) [[ number-selected = exactly-one ]]
+    ( gtk gtk3 ) [[ number-selected = at-most-one ]]
     ( linguas:
         af ar be bg bn bn_IN ca cs da de el en_GB es et eu fa fi fo fr
         gl he hr hu id is it ja kk ko lg lt ml ms nb nl nn pa pl ps pt
         pt_BR ro ru sk sl sr sr@latin sv te th tr tt_RU ug uk ur ur_PK
         vi zh_CN zh_TW
     )
+    extra-only [[
+        description = [ Disable all components but extra library to break a dependency cycle between menu-cache and ${PN} ]
+        requires = [ -demo -exif -gtk -gtk3 -vala -udisks ]
+    ]]
 "
 
 DEPENDENCIES="
@@ -28,10 +32,10 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         virtual/pkg-config
         sys-devel/gettext
-        doc? ( dev-doc/gtk-doc[>=1.14] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:
         dev-libs/glib:2[>=2.26.0]
-        lxde-base/menu-cache[>=0.3.2]
+        !extra-only? ( lxde-base/menu-cache[>=0.3.2] )
         gtk? ( 
             x11-libs/cairo[>=1.8.0]
             x11-libs/gtk+:2[>=2.18.0]
@@ -52,10 +56,11 @@ DEPENDENCIES="
 "
 
 libfm_src_configure() {
-    econf --enable-largefile    \
+    econf --enable-largefile      \
+        $(option_with extra-only) \
         $(option_enable debug ) \
         $(option_enable demo )  \
-        $(option_enable doc gtk-doc ) \
+        $(option_enable gtk-doc ) \
         $(option_enable exif ) \
         $(option_enable udisks ) \
         $(option_enable vala actions ) \
