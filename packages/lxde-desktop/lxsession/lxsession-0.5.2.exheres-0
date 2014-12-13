@@ -14,7 +14,8 @@ MYOPTIONS="
         ms nb nl nn pa pl ps pt pt_BR ro ru si sk sl sr sr@latin sv
         te th tr tt_RU ug uk ur ur_PK vi zh_CN zh_TW
     )
-" # gtk3
+"
+#    gtk3
 
 DEPENDENCIES="
     build:
@@ -26,6 +27,7 @@ DEPENDENCIES="
         dev-lang/vala
         dev-libs/dbus-glib
         dev-libs/glib:2[>=2.6.0]
+        dev-libs/unique:1
         sys-apps/dbus
         sys-auth/polkit
         x11-libs/gtk+:2[>=2.6.0]
