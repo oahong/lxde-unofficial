@@ -9,15 +9,17 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    build:
-        x11-proto/xproto
     build+run:
+        kde-frameworks/kwindowsystem
         lxqt/liblxqt
         lxqt/libqtxdg
         x11-libs/libX11
-        x11-libs/libXext
         x11-libs/qtbase
         x11-libs/qttools
         x11-libs/qtx11extras
+        (
+            x11-libs/libXcursor
+            x11-libs/libXfixes
+        ) [[ *note = [ liblxqt-config-cursor ] ]]
 "
 
