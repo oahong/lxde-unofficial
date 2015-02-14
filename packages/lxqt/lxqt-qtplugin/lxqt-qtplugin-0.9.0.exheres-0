@@ -1,0 +1,17 @@
+# Copyright 2015 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxqt
+
+SUMMARY="LXQt platform integration for Qt"
+
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        lxqt/libqtxdg
+        x11-libs/qtbase:5
+        x11-libs/qttools:5
+"
+
