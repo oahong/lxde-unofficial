@@ -6,7 +6,7 @@ require lxqt
 SUMMARY="Library used to manage removable devices"
 
 PLATFORMS="~amd64"
-MYOPTIONS="policykit"
+MYOPTIONS=""
 
 DEPENDENCIES="
     build:
