@@ -13,6 +13,7 @@ DEPENDENCIES="
         virtual/pkg-config
         x11-proto/xproto
     build+run:
+        kde-frameworks/kwindowsystem
         lxqt/liblxqt
         lxqt/libqtxdg
         x11-libs/libX11
@@ -23,6 +24,4 @@ DEPENDENCIES="
     run:
         x11-apps/xdg-utils
 "
-
-CMAKE_SRC_CONFIGURE_PARAMS=( -DBUNDLE_XDG_UTILS:bool=No )
 
