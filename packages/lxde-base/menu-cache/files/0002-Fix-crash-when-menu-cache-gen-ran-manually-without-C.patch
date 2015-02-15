@@ -1,0 +1,41 @@
+From 2097b14e2fbcf33f2fe0bb0e93829ccb1e04ae64 Mon Sep 17 00:00:00 2001
+From: Andriy Grytsenko <andrej@rep.kiev.ua>
+Date: Tue, 4 Nov 2014 14:07:59 +0200
+Subject: [PATCH 2/2] Fix crash when menu-cache-gen ran manually without
+ CACHE_GEN_VERSION.
+
+---
+ NEWS                          | 3 +++
+ menu-cache-gen/menu-compose.c | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/NEWS b/NEWS
+index c59b308..20324c2 100644
+--- a/NEWS
++++ b/NEWS
+@@ -1,6 +1,9 @@
+ * Fixed crash on generating menu with both tags <DefaultAppDirs/> and
+     <KDELegacyDirs/> present.
+ 
++* Fixed crash when menu-cache-gen ran manually without CACHE_GEN_VERSION.
++
++
+ Changes in 1.0.0 since 0.7.0:
+ 
+ * Added new cache file format generation support with changes:
+diff --git a/menu-cache-gen/menu-compose.c b/menu-cache-gen/menu-compose.c
+index b89804d..0be7e24 100644
+--- a/menu-cache-gen/menu-compose.c
++++ b/menu-cache-gen/menu-compose.c
+@@ -1023,7 +1023,7 @@ gboolean save_menu_cache(MenuMenu *layout, const char *menuname, const char *fil
+     gboolean ok = FALSE;
+ 
+     tmp = (char *)g_getenv("CACHE_GEN_VERSION");
+-    if (sscanf(tmp, "%d.%u", &i, &req_version) == 2)
++    if (tmp && sscanf(tmp, "%d.%u", &i, &req_version) == 2)
+     {
+         if (i != VER_MAJOR) /* unsupported format requested */
+             return FALSE;
+-- 
+2.3.0
+

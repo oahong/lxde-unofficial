@@ -31,5 +31,9 @@ DEPENDENCIES="
         x11-libs/libfm
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/0001-Fix-crash-on-generating-menu-with-both-tags-DefaultA.patch
+    "${FILES}"/0002-Fix-crash-when-menu-cache-gen-ran-manually-without-C.patch
+)
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk-doc )
 

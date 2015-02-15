@@ -1,0 +1,38 @@
+From 4c0c1e94514de4147fd0683ca3d0380011a2a230 Mon Sep 17 00:00:00 2001
+From: Andriy Grytsenko <andrej@rep.kiev.ua>
+Date: Tue, 4 Nov 2014 01:08:29 +0200
+Subject: [PATCH 1/2] Fix crash on generating menu with both tags
+ <DefaultAppDirs/> and <KDELegacyDirs/> present.
+
+---
+ NEWS                        | 3 +++
+ menu-cache-gen/menu-merge.c | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/NEWS b/NEWS
+index a89bd86..c59b308 100644
+--- a/NEWS
++++ b/NEWS
+@@ -1,3 +1,6 @@
++* Fixed crash on generating menu with both tags <DefaultAppDirs/> and
++    <KDELegacyDirs/> present.
++
+ Changes in 1.0.0 since 0.7.0:
+ 
+ * Added new cache file format generation support with changes:
+diff --git a/menu-cache-gen/menu-merge.c b/menu-cache-gen/menu-merge.c
+index db3c32b..68c44f7 100644
+--- a/menu-cache-gen/menu-merge.c
++++ b/menu-cache-gen/menu-merge.c
+@@ -1355,7 +1355,7 @@ restart:
+         g_free(merged);
+         /* destroy all KDELegacyDirs */
+         for (l = children; l; l = l->next)
+-            if (fm_xml_file_item_get_tag(l->data) == menuTag_KDELegacyDirs)
++            if (l->data && fm_xml_file_item_get_tag(l->data) == menuTag_KDELegacyDirs)
+             {
+                 fm_xml_file_item_destroy(l->data);
+                 l->data = NULL;
+-- 
+2.3.0
+
