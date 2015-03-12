@@ -1,0 +1,25 @@
+# Copyright 2015 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PN=elementaryicons
+MY_PNV=${MY_PN}${PV}
+require launchpad [ branch=3.x ] gtk-icon-cache
+
+SUMMARY="An icon theme designed for elementary OS"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+src_install() {
+    edo find "${WORK}" -type d -empty -delete
+    dodir /usr/share/icons
+    edo cp -a "${WORK}" "${IMAGE}"/usr/share/icons/${PN%%-*}
+    edo find "${IMAGE}" -type f \( -name AUTHORS -or \
+        -name CONTRIBUTORS -or -name  COPYING -or \
+        -name icon-theme.cache \) -delete
+}
+
