@@ -3,7 +3,7 @@
 
 require lxqt freedesktop-mime freedesktop-desktop
 
-export_exlib_phases src_prepare src_install pkg_postinst pkg_postrm
+export_exlib_phases src_install pkg_postinst pkg_postrm
 
 SUMMARY="PCManFM-Qt is the Qt port of the LXDE file manager PCManFM"
 
@@ -25,14 +25,8 @@ DEPENDENCIES="
         x11-libs/qttools
         x11-libs/qtx11extras
     run:
-        lxde-desktop/lxde-icon-theme
+        x11-themes/elementary-icon-theme
 "
-
-pcmanfm-qt_src_prepare() {
-    cmake_src_prepare
-    edo sed -e '/fallbackIconThemeName_/s/elementary/nuoveXT2/' \
-        -i "${WORKBASE}"/${PNV}/pcmanfm/settings.cpp
-}
 
 pcmanfm-qt_src_install() {
     default
