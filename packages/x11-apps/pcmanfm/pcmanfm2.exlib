@@ -48,7 +48,7 @@ pcmanfm2_src_configure() {
 
 pcmanfm2_src_install() {
     default
-    edo rmdir "${IMAGE}"/usr/${LIBDIR}/${PN}
+    edo rmdir "${IMAGE}"/usr/$(exhost --target)/lib/${PN}
 }
 
 pcmanfm2_pkg_postinst() {
