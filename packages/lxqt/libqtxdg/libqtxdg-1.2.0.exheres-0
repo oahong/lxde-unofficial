@@ -4,7 +4,7 @@
 require lxqt
 
 SUMMARY="Qt implementation of freedesktop.org xdg specs"
-DOWNLOADS="http://lxqt.org/downloads/${PN}/${PV}/${PNV}.tar.xz"
+DOWNLOADS="http://downloads.lxqt.org/${PN}/${PV}/${PNV}.tar.xz"
 
 PLATFORMS="~amd64"
 MYOPTIONS=""
@@ -16,8 +16,7 @@ DEPENDENCIES="
         x11-libs/qttools:5
 "
 
-WORK=${WORKBASE}/${PN}
-CMAKE_SOURCE=${WORK}
+CMAKE_SOURCE=${WORKBASE}/${PNV}
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
     -DBUILD_TESTS:bool=OFF
