@@ -30,7 +30,7 @@ DEPENDENCIES="
 
 pcmanfm-qt_src_install() {
     default
-    edo rmdir "${IMAGE}"/usr/include/libfm-qt/translations
+    edo rmdir "${IMAGE}"/usr/$(exhost --target)/include/libfm-qt/translations
 }
 
 pcmanfm-qt_pkg_postinst() {
