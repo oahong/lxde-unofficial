@@ -28,3 +28,8 @@ DEPENDENCIES="
         gtk3? ( x11-libs/gtk+:3 )
 "
 
+src_prepare() {
+    edo intltoolize --automake --copy --force
+    default
+}
+
