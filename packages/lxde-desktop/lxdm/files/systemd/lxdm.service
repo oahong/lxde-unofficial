@@ -1,9 +1,11 @@
 [Unit]
-Description=Display Manager
+Description=LXDE Display Manager
 Conflicts=kdm.service gdm.service slim.service xdm.service
 
 [Service]
-ExecStart=/usr/sbin/lxdm-binary
+ExecStart=/usr/x86_64-pc-linux-gnu/bin/lxdm-binary
+Restart=always
+IgnoreSIGPIPE=no
 
 [Install]
 Alias=display-manager.service

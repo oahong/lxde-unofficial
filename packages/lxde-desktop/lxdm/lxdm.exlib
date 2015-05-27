@@ -2,56 +2,68 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require lxde systemd-service [ systemd_files=[ lxdm.service ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
 
 export_exlib_phases pkg_pretend src_prepare src_install
 
 SUMMARY="GUI login manager for LXDE"
+DOWNLOADS="mirror://sourceforge/lxdm/${PNV}.tar.xz"
 
 LICENCES="GPL-3"
-MYOPTIONS="debug gtk3"
+MYOPTIONS="pam consolekit debug gtk3
+    ( linguas: af ar bg bn_IN ca cs da de el es es_VE et eu fa fi fr frp
+         gl he hr hu id it ja ko lt ml ms nb nl nn pl ps pt pt_BR ru sk
+         sl sr sv tr uk ur ur_PK vi zh_CN zh_TW )
+"
 
 DEPENDENCIES="
     build:
         dev-util/intltool
-        virtual/pkg-config
         sys-devel/gettext
+        virtual/pkg-config
         x11-proto/xproto
     build+run:
         app-text/iso-codes
         dev-libs/glib:2
-        sys-auth/ConsoleKit
-        sys-libs/pam
         x11-libs/libX11
-        x11-libs/libXmu
+        x11-libs/libxcb
         !gtk3? ( x11-libs/gtk+:2 )
+        consolekit? ( sys-auth/ConsoleKit )
         gtk3? ( x11-libs/gtk+:3 )
+        pam? ( sys-libs/pam )
 "
 
 RESTRICT="test"
-[[ ${PV} == "0.4.1" ]] && DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-fixloop.patch )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk3 )
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    # autologin?
+    --enable-password
+    #--enable-xauth
+    --with-xconn=xcb
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( consolekit debug gtk3 )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( pam )
 
 lxdm_pkg_pretend() {
     if [[ -f "${ROOT}"/etc/tmpfiles.d/${PN}.conf ]] ; then
-        ewarn "The configuration file /etc/tmpfiles.d/${PN}.conf has been moved to"
-        ewarn "/usr/${LIBDIR}/tmpfiles.d/${PN}.conf and can be safely removed after upgrade"
-        ewarn "if you did not make any changes to it."
+        ewarn "You can safely remove the configuration file: /etc/tmpfiles.d/${PN}.conf"
+        ewarn "It has been moved to /usr/${LIBDIR}/tmpfiles.d/${PN}.conf"
     fi
 }
 
 lxdm_src_prepare() {
-    default
-    rm -v data/${PN}.conf
+    edo intltoolize --copy --force --automake
+    edo sed -e "/^PKG_CONFIG=/s@pkg-config@${PKG_CONFIG}@" -i configure.ac
+    autotools_src_prepare
+    edo rm -v data/${PN}.conf
 }
 
 lxdm_src_install() {
     default
-    edo rm "${IMAGE}"/usr/sbin/${PN}
     install_systemd_files
     if option systemd ; then
-        insinto /usr/${LIBDIR}/tmpfiles.d
+        insinto /usr/$(exhost --target)/lib/tmpfiles.d
         hereins ${PN}.conf <<EOF
-d /var/run/lxdm 0755 root root -
+d /var/run/${PN} 0755 root root -
 EOF
     fi
 }
