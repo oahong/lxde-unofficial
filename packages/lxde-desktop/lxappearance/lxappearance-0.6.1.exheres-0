@@ -33,9 +33,6 @@ DEPENDENCIES="
         gtk3? ( x11-libs/gtk+:3 )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --localedir=/usr/share/locale
-    --enable-dbus
-)
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-dbus )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk3 )
 
