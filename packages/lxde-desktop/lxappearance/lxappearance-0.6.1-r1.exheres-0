@@ -36,3 +36,8 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-dbus )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk3 )
 
+src_prepare() {
+    edo intltoolize --automake --copy --force
+    default
+}
+
