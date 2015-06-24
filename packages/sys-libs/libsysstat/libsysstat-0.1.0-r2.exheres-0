@@ -24,4 +24,10 @@ DEFAULT_SRC_PREPARE_PATCHES=(
     "${FILES}"/0003-Use-QString-fromLatin1-instead-of-QString-fromAscii.patch
     "${FILES}"/0004-simplify-QT-switching-use-ENV.patch
 )
+CMAKE_SRC_CONFIGURE_PARAMS=( -DUSE_QT5:BOOL=TRUE )
+
+src_prepare() {
+    default
+    edo sed -e 's@share/cmake@/usr/&@' -i CMakeLists.txt
+}
 
