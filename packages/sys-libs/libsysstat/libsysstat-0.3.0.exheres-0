@@ -15,19 +15,13 @@ DEPENDENCIES="
         x11-libs/qttools
 "
 
-WORK=${WORKBASE}
-CMAKE_SOURCE=${WORK}
-
 DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/0001-Improve-FreeBSD-support.patch
-    "${FILES}"/0002-Adapt-the-build-system-to-handle-Qt4-and-Qt5.patch
-    "${FILES}"/0003-Use-QString-fromLatin1-instead-of-QString-fromAscii.patch
-    "${FILES}"/0004-simplify-QT-switching-use-ENV.patch
+    "${FILES}"/96fb242e2070b22d504d93c89616dd017f85e201.patch
+    "${FILES}"/f72bc6173f25710089d237b1f37ff88b7772455d.patch
 )
-CMAKE_SRC_CONFIGURE_PARAMS=( -DUSE_QT5:BOOL=TRUE )
 
 src_prepare() {
-    default
+    cmake_src_prepare
     edo sed -e 's@share/cmake@/usr/&@' -i CMakeLists.txt
 }
 

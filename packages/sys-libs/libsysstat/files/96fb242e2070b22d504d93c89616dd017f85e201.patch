@@ -1,0 +1,21 @@
+From: Helio Chissini de Castro <helio@kde.org>
+Date: Sun, 8 Feb 2015 17:04:38 +0000 (-0200)
+Subject: - Bump missing versioning
+X-Git-Url: http://git.lxde.org/gitweb/?p=lxde%2Flibsysstat.git;a=commitdiff_plain;h=96fb242e2070b22d504d93c89616dd017f85e201
+
+- Bump missing versioning
+---
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e8bb8a7..edefebf 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -7,7 +7,7 @@ set(LIB_INSTALL_DIR "lib${LIB_SUFFIX}" CACHE PATH "Installation path for librari
+ set(INCLUDE_INSTALL_DIR include CACHE PATH "Installation path for includes")
+ 
+ set(MAJOR_VERSION 0)
+-set(MINOR_VERSION 2)
++set(MINOR_VERSION 3)
+ set(PATCH_VERSION 0)
+ set(SYSSTAT_VERSION "${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}")
+ 
