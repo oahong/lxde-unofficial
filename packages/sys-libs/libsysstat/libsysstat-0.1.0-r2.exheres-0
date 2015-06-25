@@ -4,7 +4,7 @@
 require lxqt
 
 SUMMARY="Library used to query system info and statistics"
-DOWNLOADS="http://lxqt.org/downloads/${PN}/${PV}/${PNV}.tar.xz"
+DOWNLOADS="http://downloads.lxqt.org/${PN}/${PV}/${PNV}.tar.xz"
 
 PLATFORMS="~amd64"
 MYOPTIONS=""
