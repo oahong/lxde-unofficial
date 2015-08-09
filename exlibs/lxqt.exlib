@@ -5,7 +5,7 @@ myexparam release=${PV}
 require cmake [ api=2 ]
 
 HOMEPAGE="http://www.lxqt.org"
-DOWNLOADS="http://download.lxqt.org/lxqt/$(exparam release)/${PNV}.tar.xz"
+DOWNLOADS="http://downloads.lxqt.org/lxqt/$(exparam release)/${PNV}.tar.xz"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
