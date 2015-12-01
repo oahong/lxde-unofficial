@@ -3,7 +3,7 @@
 
 require lxqt
 
-SUMMARY="Library used to manage removable devices"
+SUMMARY="PolicyKit agent for LXQT"
 
 PLATFORMS="~amd64"
 MYOPTIONS=""
@@ -12,11 +12,13 @@ DEPENDENCIES="
     build:
         virtual/pkg-config
     build+run:
+        kde-frameworks/kwindowsystem:5
         lxqt/liblxqt
         lxqt/libqtxdg
         sys-auth/polkit
         sys-auth/polkit-qt[qt5]
-        x11-libs/qtbase
-        x11-libs/qttools
+        x11-libs/qtbase:5
+        x11-libs/qttools:5
+        x11-libs/qtx11extras:5
 "
 
