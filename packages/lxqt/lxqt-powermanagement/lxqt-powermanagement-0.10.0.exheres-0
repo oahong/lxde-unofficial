@@ -12,12 +12,14 @@ DEPENDENCIES="
     build:
         virtual/pkg-config
     build+run:
+        kde-frameworks/solid:5
         lxqt/liblxqt
         lxqt/libqtxdg
+        x11-libs/libX11
         x11-libs/libxcb
-        x11-libs/qtbase
-        x11-libs/qtsvg
-        x11-libs/qttools
-        x11-libs/qtx11extras
+        x11-libs/qtbase:5
+        x11-libs/qtsvg:5
+        x11-libs/qttools:5
+        x11-libs/qtx11extras:5
 "
 
