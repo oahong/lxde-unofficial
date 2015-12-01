@@ -11,17 +11,8 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        x11-libs/qtbase
-        x11-libs/qttools
+        x11-libs/qtbase:5
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/96fb242e2070b22d504d93c89616dd017f85e201.patch
-    "${FILES}"/f72bc6173f25710089d237b1f37ff88b7772455d.patch
-)
-
-src_prepare() {
-    cmake_src_prepare
-    edo sed -e 's@share/cmake@/usr/&@' -i CMakeLists.txt
-}
+DEFAULT_SRC_INSTALL_EXCLUDE=( release.sh )
 
