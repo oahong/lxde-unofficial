@@ -11,11 +11,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        sys-apps/file
         x11-libs/qtbase:5
-        x11-libs/qttools:5
 "
 
+DEFAULT_SRC_INSTALL_EXCLUDE=( release.sh )
 CMAKE_SOURCE=${WORKBASE}/${PNV}
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
