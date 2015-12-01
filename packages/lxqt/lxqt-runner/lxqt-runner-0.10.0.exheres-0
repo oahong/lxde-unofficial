@@ -12,13 +12,20 @@ DEPENDENCIES="
     build:
         virtual/pkg-config
     build+run:
-        kde-frameworks/kwindowsystem
+        kde-frameworks/kwindowsystem:5
         lxde-base/menu-cache[>=0.3.3]
         lxqt/liblxqt
         lxqt/libqtxdg
         lxqt/lxqt-globalkeys
-        x11-libs/qtbase
-        x11-libs/qtscript
-        x11-libs/qttools
+        x11-libs/qtbase:5
+        x11-libs/qtscript:5
+        x11-libs/qttools:5
+        x11-libs/qtx11extras
 "
+
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DUSE_MENU_CACHE:BOOL=TRUE
+    -DRUNNER_MATH:BOOL=TRUE
+    -DRUNNER_VBOX:BOOL=TRUE
+)
 
