@@ -10,7 +10,11 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        x11-libs/qtbase
+        kde-frameworks/kwindowsystem:5
         lxqt/liblxqt
+        lxqt/libqtxdg
+        x11-libs/qtbase:5
+        x11-libs/qttools:5
+        x11-libs/qtx11extras:5
 "
 
