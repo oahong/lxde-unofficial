@@ -8,6 +8,7 @@ SUMMARY="The LXQt desktop panel"
 PLATFORMS="~amd64"
 MYOPTIONS="alsa pulseaudio lm_sensors"
 
+# https://github.com/lxde/lxqt/issues/783
 DEPENDENCIES="
     build:
         virtual/pkg-config
@@ -45,6 +46,8 @@ DEPENDENCIES="
             x11-libs/libXrender
         ) [[ note = [ plugin-tray ] ]]
         lm_sensors? ( sys-apps/lm_sensors ) [[ note = [ plugin-sensors ] ]]
+    recommendation:
+        lxde-desktop/lxmenu-data [[ note = [ plugin-mainmenu, upstream issue 783 ] ]]
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=(
@@ -52,6 +55,7 @@ DEFAULT_SRC_PREPARE_PATCHES=(
     # we can drop the patch until someone apply revision 266 on dbusmenu-qt
     "${FILES}"/a28a27ceaec57d626d105065543792e486168df2.patch
 )
+
 CMAKE_SRC_CONFIGURE_OPTIONS=(
     'alsa VOLUME_USE_ALSA'
     'pulseaudio VOLUME_USE_PULSEAUDIO'
