@@ -25,7 +25,7 @@ DEPENDENCIES="
     build+run:
         ncurses? ( sys-libs/ncurses )
     test:
-        dev-lang/perl
+        dev-lang/perl:*
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-man-build )
