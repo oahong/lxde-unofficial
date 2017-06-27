@@ -1,0 +1,22 @@
+# Copyright 2017 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxqt github [ user=lxde release=${PV} suffix=tar.xz ]
+
+SUMMARY="Package scripts and tools for LXQt"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+    build+run:
+        x11-libs/qtbase:5
+"
+
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DLXQT_ETC_XDG_DIR:PATH=/etc/xdg/lxqt
+)
+
