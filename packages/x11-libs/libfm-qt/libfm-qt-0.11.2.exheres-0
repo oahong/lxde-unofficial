@@ -1,10 +1,10 @@
 # Copyright 2016 Hong Hao <oahong@oahong.me>
 # Distributed under the terms of the GNU General Public License v2
 
-require lxqt
+QT_MINIMUM_VERSION=5.2
+require lxqt [ component=${PN} ]
 
-SUMMARY="Qt port of the libfm"
-DOWNLOADS="http://downloads.lxqt.org/${PN}/${PV}/${PNV}.tar.xz"
+SUMMARY="Qt binding for libfm"
 
 SLOT="0"
 PLATFORMS="~amd64"
@@ -12,27 +12,25 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
+        lxqt/lxqt-build-tools[>=0.3.0]
         virtual/pkg-config
-        x11-libs/qttools:5
     build+run:
-        x11-libs/qtbase:5
-        x11-libs/qtx11extras:5
         dev-libs/glib:2
-        x11-libs/libxcb
-        x11-libs/libfm[>=1.2.0]
         lxde-base/menu-cache[>0.4.0]
+        media-libs/libexif
+        x11-libs/libfm[>=1.2.0]
+        x11-libs/libxcb
+        x11-libs/qtbase:5[>=${QT_MINIMUM_VERSION}]
+        x11-libs/qttools:5[>=${QT_MINIMUM_VERSION}]
+        x11-libs/qtx11extras:5[>=${QT_MINIMUM_VERSION}]
         !x11-apps/pcmanfm-qt[<=0.10.0] [[
             description = [ ${PN} was part of pcmanfm-qt ]
             resolution = uninstall-blocked-before
         ]]
 "
 
-CMAKE_SRC_CONFIGURE_PARAMS=(
+CMAKE_SRC_CONFIGURE_PARAMS+=(
+    #FIXME:
     -DBUILD_DOCUMENTATION:BOOL=FALSE
 )
-
-src_install() {
-    default
-    edo rmdir "${IMAGE}"/usr/$(exhost --target)/include/${PN}/translations
-}
 
