@@ -10,13 +10,13 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
+        lxqt/lxqt-build-tools
         virtual/pkg-config
     build+run:
         kde-frameworks/solid:5
-        lxqt/liblxqt
+        kde-frameworks/kidletime:5
+        lxqt/liblxqt[~${PV}]
         lxqt/libqtxdg
-        x11-libs/libX11
-        x11-libs/libxcb
         x11-libs/qtbase:5
         x11-libs/qtsvg:5
         x11-libs/qttools:5
