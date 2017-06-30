@@ -3,25 +3,33 @@
 
 require lxqt
 
-SUMMARY="An alternative session manager ported from the original razor-session"
+SUMMARY="LXQt session manager"
 
 PLATFORMS="~amd64"
-MYOPTIONS=""
+MYOPTIONS="( providers: eudev systemd )"
 
 DEPENDENCIES="
     build:
+        lxqt/lxqt-build-tools
         virtual/pkg-config
         x11-proto/xproto
     build+run:
         kde-frameworks/kwindowsystem:5
-        lxqt/liblxqt
+        lxqt/liblxqt[~${PV}]
         lxqt/libqtxdg
         x11-libs/libX11
-        x11-libs/libxcb
         x11-libs/qtbase:5
+        x11-libs/qtsvg:5
         x11-libs/qttools:5
         x11-libs/qtx11extras:5
+        providers:eudev? ( sys-apps/eudev )
+        providers:systemd? ( sys-apps/systemd )
     run:
-        x11-apps/xdg-utils
+        x11-apps/xdg-user-dirs
 "
+
+CMAKE_SRC_CONFIGURE_PARAMS+=(
+    # keyboard layout/settings reload after new input device added
+    -DWITH_LIBUDEV:BOOL=TRUE
+)
 
