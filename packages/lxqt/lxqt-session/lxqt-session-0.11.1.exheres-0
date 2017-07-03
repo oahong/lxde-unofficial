@@ -26,6 +26,7 @@ DEPENDENCIES="
         providers:systemd? ( sys-apps/systemd )
     run:
         x11-apps/xdg-user-dirs
+        x11-apps/xdg-utils [[ note = [ xdg-screensaver ] ]]
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS+=(
