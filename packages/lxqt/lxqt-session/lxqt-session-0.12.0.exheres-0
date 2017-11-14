@@ -23,7 +23,7 @@ DEPENDENCIES="
         providers:eudev? ( sys-apps/eudev )
         providers:systemd? ( sys-apps/systemd )
         !lxqt/lxqt-common [[
-            description = [ Removal since 0.12.0 release ]
+            description = [ config file conflict ]
             resolution = [ uninstall-blocked-after ]
         ]]
     run:

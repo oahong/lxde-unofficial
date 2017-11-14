@@ -16,7 +16,7 @@ DEPENDENCIES="
         x11-libs/qtbase:5
         x11-libs/qttools:5
         !lxqt/lxqt-common [[
-            description = [ Removal since 0.12.0 release ]
+            description = [ config file conflict ]
             resolution = [ uninstall-blocked-after ]
         ]]
 "
