@@ -10,18 +10,16 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        lxqt/lxqt-build-tools
         virtual/pkg-config
     build+run:
+        dev-libs/glib:2
         kde-frameworks/kwindowsystem:5
         lxde-base/menu-cache[>=0.3.3]
         lxqt/liblxqt[~${PV}]
-        lxqt/lxqt-globalkeys
         lxqt/libqtxdg
+        lxqt/lxqt-globalkeys[>=${PV}]
         x11-libs/qtbase:5
-        x11-libs/qtsvg:5
         x11-libs/qttools:5
-        x11-libs/qtx11extras
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS+=(
