@@ -1,15 +1,16 @@
 # Copyright 2014 Hong Hao <oahong@oahong.me>
 # Distributed under the terms of the GNU General Purpose License v2
 
-myexparam release=${PV}
-myexparam component=lxqt
-
 if ever at_least scm ; then
     SCM_REPOSITORY="git://github.com/lxde/${PN}.git"
     require scm-git
 
     DOWNLOADS=""
+elif ever at_least 0.12.0 ; then
+    DOWNLOADS="https://downloads.lxqt.org/downloads/${PN}/${PV}/${PNV}.tar.xz"
 else
+    myexparam release=${PV}
+    myexparam component=lxqt
     DOWNLOADS="http://downloads.lxqt.org/$(exparam component)/$(exparam release)/${PNV}.tar.xz"
 fi
 
@@ -18,6 +19,11 @@ HOMEPAGE="http://www.lxqt.org"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
+
+DEPENDENCIES="
+    build:
+        lxqt/lxqt-build-tools[>=0.4.0]
+"
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
     -DUPDATE_TRANSLATIONS:BOOL=FALSE
