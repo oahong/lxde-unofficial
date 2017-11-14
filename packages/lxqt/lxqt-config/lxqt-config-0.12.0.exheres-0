@@ -10,11 +10,9 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        lxqt/lxqt-build-tools
         virtual/pkg-config
     build+run:
         kde-frameworks/kwindowsystem:5
-        kde-frameworks/libkscreen:5 [[ note = [ lxqt-config-monitor ] ]]
         lxqt/liblxqt[~${PV}]
         lxqt/libqtxdg
         x11-libs/libX11
@@ -22,18 +20,23 @@ DEPENDENCIES="
         x11-libs/libXfixes
         x11-libs/libxcb
         x11-libs/qtbase:5
-        x11-libs/qtsvg:5
         x11-libs/qttools:5
         x11-libs/qtx11extras:5
+        (
+            kde-frameworks/libkscreen:5
+            x11-libs/qtsvg:5
+        )  [[ *note = [ lxqt-config-monitor ] ]]
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/bca652a75f8a497a69b1fbc1c7eaa353f6b4eef8.patch
+    "${FILES}"/0001-Use-CMAKE_INSTALL_DATAROOTDIR.patch
 )
+
 CMAKE_SRC_CONFIGURE_PARAMS+=(
     -DWITH_INPUT:BOOL=TRUE
     -DWITH_FILE_ASSOCIATIONS:BOOL=TRUE
     -DWITH_APPEARANCE:BOOL=TRUE
+    -DWITH_MONITOR:BOOL=TRUE
     -DWITH_BRIGHTNESS:BOOL=TRUE
     -DWITH_LOCALE:BOOL=TRUE
 )
