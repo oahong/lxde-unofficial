@@ -4,7 +4,6 @@
 require lxqt
 
 SUMMARY="Qt implementation of freedesktop.org xdg specs"
-DOWNLOADS="http://downloads.lxqt.org/${PN}/${PV}/${PNV}.tar.xz"
 
 PLATFORMS="~amd64"
 MYOPTIONS=""
