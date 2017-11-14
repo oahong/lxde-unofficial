@@ -11,7 +11,6 @@ MYOPTIONS="alsa pulseaudio lm_sensors"
 # https://github.com/lxde/lxqt/issues/783
 DEPENDENCIES="
     build:
-        lxqt/lxqt-build-tools
         virtual/pkg-config
         x11-proto/xproto
     build+run:
@@ -19,7 +18,7 @@ DEPENDENCIES="
         kde-frameworks/solid [[ note = [ plugin-mount ] ]]
         lxde-base/menu-cache[>=0.3.3] [[ note = [ plugin-mainmenu ] ]]
         lxqt/liblxqt[~${PV}]
-        lxqt/libqtxdg
+        lxqt/libqtxdg[>=3.1.0]
         lxqt/lxqt-globalkeys
         sys-libs/libstatgrab [[ note = [ cpuload and networkmonitor plugin ] ]]
         sys-libs/libsysstat[>0.1.0] [[ note = [ plugin-sysstat ] ]]
@@ -52,13 +51,6 @@ DEPENDENCIES="
         lxde-desktop/lxmenu-data [[ note = [ plugin-mainmenu, upstream issue 783 ] ]]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    # Read discussion on https://github.com/lxde/lxqt-panel/commit/a28a27ceaec57d626d105065543792e486168df2
-    # we can drop the patch until someone apply revision 266 on dbusmenu-qt
-    "${FILES}"/a28a27ceaec57d626d105065543792e486168df2.patch
-    # issue #1251
-    "${FILES}"/ec62109e0fa678875a9b10fc6f1975267432712d.patch
-)
 CMAKE_SRC_CONFIGURE_OPTIONS=(
     'alsa VOLUME_USE_ALSA'
     'pulseaudio VOLUME_USE_PULSEAUDIO'
