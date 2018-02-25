@@ -26,7 +26,7 @@ DEPENDENCIES="
         dev-util/intltool
         virtual/pkg-config
         sys-devel/gettext
-        x11-proto/xproto
+        x11-proto/xorgproto
     build+run:
         dev-libs/glib:2
         dev-libs/libxml2 [[ note = [ weather plugin ] ]]
