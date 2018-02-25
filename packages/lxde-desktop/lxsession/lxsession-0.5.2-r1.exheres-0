@@ -22,7 +22,7 @@ DEPENDENCIES="
         dev-util/intltool
         sys-devel/gettext
         virtual/pkg-config
-        x11-proto/xproto
+        x11-proto/xorgproto
     build+run:
         dev-lang/vala
         dev-libs/dbus-glib
