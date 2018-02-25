@@ -22,7 +22,7 @@ DEPENDENCIES="
         dev-util/intltool
         sys-devel/gettext
         virtual/pkg-config
-        x11-proto/xproto
+        x11-proto/xorgproto
     build+run:
         lxde-base/menu-cache
         x11-libs/libX11
