@@ -11,7 +11,7 @@ MYOPTIONS="( providers: eudev systemd )"
 DEPENDENCIES="
     build:
         virtual/pkg-config
-        x11-proto/xproto
+        x11-proto/xorgproto
     build+run:
         kde-frameworks/kwindowsystem:5
         lxqt/liblxqt[~${PV}]
