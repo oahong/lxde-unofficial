@@ -27,7 +27,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         virtual/pkg-config
         sys-devel/gettext
-        x11-proto/xproto
+        x11-proto/xorgproto
     build+run:
         dev-libs/glib:2[>=2.18.0]
         x11-libs/pango[>=1.20.0]
