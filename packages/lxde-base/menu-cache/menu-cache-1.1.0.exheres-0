@@ -31,5 +31,8 @@ DEPENDENCIES="
         x11-libs/libfm
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/97e5de8682c0c44fe4e6a2df864c5fdf76cd77cc.patch
+)
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk-doc )
 
