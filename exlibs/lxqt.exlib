@@ -2,16 +2,10 @@
 # Distributed under the terms of the GNU General Purpose License v2
 
 if ever at_least scm ; then
-    SCM_REPOSITORY="git://github.com/lxde/${PN}.git"
+    SCM_REPOSITORY="https://github.com/lxqt/${PN}"
     require scm-git
-
-    DOWNLOADS=""
-elif ever at_least 0.12.0 ; then
-    DOWNLOADS="https://downloads.lxqt.org/downloads/${PN}/${PV}/${PNV}.tar.xz"
 else
-    myexparam release=${PV}
-    myexparam component=lxqt
-    DOWNLOADS="http://downloads.lxqt.org/$(exparam component)/$(exparam release)/${PNV}.tar.xz"
+    DOWNLOADS="https://downloads.lxqt.org/downloads/${PN}/${PV}/${PNV}.tar.xz"
 fi
 
 require cmake [ api=2 ] [ cmake_minimum_version=3.0.2 ]
