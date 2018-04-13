@@ -1,7 +1,7 @@
 # Copyright 2014 Hong Hao <oahong@oahong.me>
 # Distributed under the terms of the GNU General Public License v2
 
-require lxqt [ component=${PN} ]
+require lxqt
 
 SUMMARY="Common files for LXQt"
 
