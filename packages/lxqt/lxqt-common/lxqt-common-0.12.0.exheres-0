@@ -1,0 +1,23 @@
+# Copyright 2014 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+require lxqt
+
+SUMMARY="Common files for LXQt"
+
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        lxqt/lxqt-build-tools
+    build+run:
+        lxqt/liblxqt[~${PV}]
+    run:
+        (
+            x11-apps/xmessage
+            x11-apps/xprop
+            x11-wm/openbox
+        ) [[ note = [ startlxqt script ] ]]
+"
+
