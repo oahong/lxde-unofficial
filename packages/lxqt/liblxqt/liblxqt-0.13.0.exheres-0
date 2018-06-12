@@ -1,7 +1,7 @@
 # Copyright 2014-2015 Hong Hao <oahong@oahong.me>
 # Distributed under the terms of the GNU General Public License v2
 
-QT_MINIMUM_VERSION=5.5.0
+QT_MINIMUM_VERSION=5.7.1
 require lxqt
 
 SUMMARY="Core utility library for LXQt components"
@@ -10,6 +10,8 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
+    build:
+        sys-auth/polkit-qt:1
     build+run:
         kde-frameworks/kwindowsystem:5
         lxqt/libqtxdg[>=3.1.0]
