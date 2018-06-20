@@ -18,7 +18,7 @@ DEPENDENCIES="
         media-libs/libexif
         x11-libs/libX11
         x11-libs/libXfixes
-        x11-libs/libfm-qt
+        x11-libs/libfm-qt[>=0.13.0]
         x11-libs/qtbase:5
         x11-libs/qtsvg:5
         x11-libs/qttools:5
