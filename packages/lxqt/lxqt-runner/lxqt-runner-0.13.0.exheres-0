@@ -14,7 +14,6 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2
         kde-frameworks/kwindowsystem:5
-        lxde-base/menu-cache[>=0.3.3]
         lxqt/liblxqt[~${PV}]
         lxqt/libqtxdg
         lxqt/lxqt-globalkeys[>=${PV}]
@@ -23,7 +22,7 @@ DEPENDENCIES="
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS+=(
-    -DUSE_MENU_CACHE:BOOL=TRUE
+    -DUSE_MENU_CACHE:BOOL=FALSE
     # depends on muparser
     -DRUNNER_MATH:BOOL=FALSE
     -DRUNNER_VBOX:BOOL=FALSE
