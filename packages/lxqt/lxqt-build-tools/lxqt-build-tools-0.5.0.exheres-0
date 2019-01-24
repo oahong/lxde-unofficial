@@ -1,7 +1,7 @@
 # Copyright 2017 Hong Hao <oahong@oahong.me>
 # Distributed under the terms of the GNU General Public License v2
 
-require cmake github [ user=lxde release=${PV} suffix=tar.xz ]
+require github [ user=lxde release=${PV} suffix=tar.xz ] cmake [ api=2 ]
 
 SUMMARY="Package scripts and tools for LXQt"
 HOMEPAGE="https://lxqt.org"
@@ -14,7 +14,6 @@ MYOPTIONS=""
 DEPENDENCIES="
     build:
         virtual/pkg-config
-        sys-devel/cmake[>=3.0.2]
     build+run:
         dev-libs/glib:2[>=2.50]
         x11-libs/qtbase:5[>=5.7.1]
