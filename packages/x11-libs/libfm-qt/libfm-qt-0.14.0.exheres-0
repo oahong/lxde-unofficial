@@ -12,11 +12,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        lxqt/lxqt-build-tools[>=0.4.0]
         virtual/pkg-config
     build+run:
         dev-libs/glib:2[>=2.50.0]
-        lxde-base/menu-cache[>0.4.0]
+        lxde-base/menu-cache[>=1.1.0]
         media-libs/libexif
         x11-libs/libxcb
         x11-libs/qtbase:5[>=${REQUIRED_QT_VERSION}]
@@ -29,12 +28,12 @@ DEPENDENCIES="
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS+=(
-    #FIXME:
     -DBUILD_DOCUMENTATION:BOOL=FALSE
 )
 
 src_install() {
     default
     edo rmdir "${IMAGE}"/usr/$(exhost --target)/include/libfm-qt/tests
+    edo rmdir "${IMAGE}"/usr/x86_64-pc-linux-gnu/include/libfm-qt/translations
 }
 

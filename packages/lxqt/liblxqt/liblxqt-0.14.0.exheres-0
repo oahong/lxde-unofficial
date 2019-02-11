@@ -13,8 +13,8 @@ DEPENDENCIES="
     build:
         sys-auth/polkit-qt:1
     build+run:
-        kde-frameworks/kwindowsystem:5
-        lxqt/libqtxdg[>=3.1.0]
+        kde-frameworks/kwindowsystem:5[>=5.36.0]
+        lxqt/libqtxdg[>=3.3.0]
         x11-libs/libX11
         x11-libs/libXScrnSaver
         x11-libs/qtbase:5[>=${QT_MINIMUM_VERSION}]

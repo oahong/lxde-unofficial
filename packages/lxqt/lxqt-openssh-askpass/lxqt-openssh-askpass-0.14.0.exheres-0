@@ -11,7 +11,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         lxqt/liblxqt[~${PV}]
-        x11-libs/qtbase:5
-        x11-libs/qttools:5
+        x11-libs/qtbase:5[>=5.7.1]
+        x11-libs/qttools:5[>=5.7.1]
 "
 

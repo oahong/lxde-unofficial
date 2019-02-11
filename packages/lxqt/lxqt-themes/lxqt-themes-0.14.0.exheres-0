@@ -14,11 +14,5 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
-DEPENDENCIES="
-    build+run:
-        !lxqt/lxqt-common [[
-            description = [ config file conflict ]
-            resolution = [ uninstall-blocked-after ]
-        ]]
-"
+DEPENDENCIES=""
 

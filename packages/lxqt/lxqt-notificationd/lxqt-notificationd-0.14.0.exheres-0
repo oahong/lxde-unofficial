@@ -10,14 +10,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        kde-frameworks/kwindowsystem:5
+        kde-frameworks/kwindowsystem:5[>=5.36.0]
         lxqt/liblxqt[~${PV}]
         lxqt/libqtxdg
-        x11-libs/qtbase:5
-        x11-libs/qttools:5
-        !lxqt/lxqt-common [[
-            description = [ config file conflict ]
-            resolution = [ uninstall-blocked-after ]
-        ]]
+        x11-libs/qtbase:5[>=5.7.1]
+        x11-libs/qttools:5[>=5.7.1]
 "
 

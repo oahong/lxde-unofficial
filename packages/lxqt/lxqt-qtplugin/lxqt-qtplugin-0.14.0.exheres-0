@@ -10,12 +10,11 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-libs/glib:2
-        lxqt/libqtxdg
+        lxqt/libqtxdg[>=3.3.0]
         x11-libs/dbusmenu-qt[qt5]
         x11-libs/libfm-qt
-        x11-libs/qtbase:5
-        x11-libs/qttools:5
-        x11-libs/qtx11extras:5
+        x11-libs/qtbase:5[>=5.7.1]
+        x11-libs/qttools:5[>=5.7.1]
+        x11-libs/qtx11extras:5[>=5.7.1]
 "
 
