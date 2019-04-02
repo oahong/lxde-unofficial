@@ -21,7 +21,7 @@ DEPENDENCIES="
         lxqt/lxqt-globalkeys
         sys-libs/libstatgrab [[ note = [ cpuload and networkmonitor plugin ] ]]
         sys-libs/libsysstat[>0.1.0] [[ note = [ plugin-sysstat ] ]]
-        x11-libs/dbusmenu-qt[qt5] [[ note = [ plugin-statusnotifier ] ]]
+        x11-libs/dbusmenu-qt[qt5(+)] [[ note = [ plugin-statusnotifier ] ]]
         x11-libs/libX11
         x11-libs/libXext
         x11-libs/libxcb
