@@ -10,7 +10,7 @@ PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIS="
     build:
-        app-doc/gtk-doc-autotools
+        dev-doc/gtk-doc[>=1.32-r1]
 "
 
 src_prepare() {
